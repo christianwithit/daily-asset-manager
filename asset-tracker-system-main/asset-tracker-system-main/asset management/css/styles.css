@@ -1,0 +1,4537 @@
+/* ===================================
+   CSS Custom Properties (Variables)
+   Vision Group Uganda Corporate Identity
+   =================================== */
+
+/* 
+   ╔═══════════════════════════════════════════════════════════════════════════╗
+   ║                     UI ALIGNMENT CONSISTENCY SYSTEM                       ║
+   ║                                                                           ║
+   ║  This CSS file implements a standardized design system for the Daily     ║
+   ║  Asset Register application. All spacing, sizing, and layout values      ║
+   ║  are centralized as CSS variables to ensure visual consistency.          ║
+   ║                                                                           ║
+   ║  Reference Implementation: Check-in/Check-out section                    ║
+   ║  Design Document: .kiro/specs/ui-alignment-consistency/design.md         ║
+   ║  Requirements: .kiro/specs/ui-alignment-consistency/requirements.md      ║
+   ╚═══════════════════════════════════════════════════════════════════════════╝
+*/
+
+:root {
+    /* ═══════════════════════════════════════════════════════════════════════
+       PRIMARY BRAND COLORS
+       Vision Group Uganda Corporate Identity
+       ═══════════════════════════════════════════════════════════════════════ */
+    
+    /* --color-brand-red: Vision Group primary brand color
+       Usage: Primary action buttons, active states, brand accents
+       Requirements: 5.2, 5.3 */
+    --color-brand-red: #CF2E2E;
+    
+    /* --color-brand-red-dark: Darker shade for hover states
+       Usage: Button hover states, interactive element emphasis
+       Requirements: 5.2 */
+    --color-brand-red-dark: #B02626;
+    
+    /* --color-white: Pure white for backgrounds and text
+       Usage: Form backgrounds, button text, clean surfaces */
+    --color-white: #FFFFFF;
+    
+    /* --color-dark-gray: Primary text color
+       Usage: Body text, headings, labels
+       Requirements: 3.1, 3.2 */
+    --color-dark-gray: #1A1A1A;
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       STATUS COLORS
+       Used for transaction states and visual feedback
+       ═══════════════════════════════════════════════════════════════════════ */
+    
+    /* --color-green: Success and authorized states
+       Usage: Check-in status, authorized badges, success messages */
+    --color-green: #28A745;
+    
+    /* --color-red: Error and unauthorized states
+       Usage: Validation errors, unauthorized badges, alerts */
+    --color-red: #CF2E2E;
+    
+    /* --color-orange: Warning and check-out states
+       Usage: Check-out status, pending states, warnings */
+    --color-orange: #FFA500;
+    
+    /* --color-blue: Information states (currently uses brand red)
+       Usage: Informational messages, neutral highlights */
+    --color-blue: #CF2E2E;
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       NEUTRAL COLORS
+       Foundation colors for UI elements
+       ═══════════════════════════════════════════════════════════════════════ */
+    
+    /* --color-light-gray: Subtle backgrounds and hover states
+       Usage: Table row alternation, inactive button hover, section backgrounds
+       Requirements: 5.4 */
+    --color-light-gray: #F5F5F5;
+    
+    /* --color-medium-gray: Secondary text and inactive states
+       Usage: Placeholder text, disabled states, secondary information */
+    --color-medium-gray: #6C757D;
+    
+    /* --color-text-gray: Primary text color (same as dark-gray)
+       Usage: All body text, form labels, table content
+       Requirements: 3.1, 3.2 */
+    --color-text-gray: #1A1A1A;
+    
+    /* --color-border-gray: Borders and dividers
+       Usage: Input borders, table borders, section dividers
+       Requirements: 5.1 */
+    --color-border-gray: #DDDDDD;
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       TYPOGRAPHY
+       Professional sans-serif font stack
+       ═══════════════════════════════════════════════════════════════════════ */
+    
+    /* --font-family: System font stack for optimal rendering
+       Usage: All text elements throughout the application
+       Fallback order: Helvetica Neue → Helvetica → Arial → system sans-serif */
+    --font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       GENERAL SPACING
+       Base spacing scale for margins, padding, and gaps
+       ═══════════════════════════════════════════════════════════════════════ */
+    
+    /* --spacing-xs: Extra small spacing (5px)
+       Usage: Icon gaps, tight spacing between related elements */
+    --spacing-xs: 5px;
+    
+    /* --spacing-sm: Small spacing (10px)
+       Usage: Compact layouts, button groups, small gaps */
+    --spacing-sm: 10px;
+    
+    /* --spacing-md: Medium spacing (15px)
+       Usage: Standard element gaps, form field spacing */
+    --spacing-md: 15px;
+    
+    /* --spacing-lg: Large spacing (20px)
+       Usage: Section padding, major element separation */
+    --spacing-lg: 20px;
+    
+    /* --spacing-xl: Extra large spacing (30px)
+       Usage: Page margins, major section separation */
+    --spacing-xl: 30px;
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       VISUAL EFFECTS
+       Border radius and transitions for consistent UI feel
+       ═══════════════════════════════════════════════════════════════════════ */
+    
+    /* --border-radius: Minimal border radius for professional appearance
+       Usage: All buttons, inputs, cards, and containers
+       Requirements: 2.5 */
+    --border-radius: 4px;
+
+    /* --transition-fast: Quick transitions for immediate feedback
+       Usage: Hover states, focus states, color changes */
+    --transition-fast: 0.2s ease;
+    
+    /* --transition-normal: Standard transitions for smooth animations
+       Usage: Button interactions, panel expansions, layout changes */
+    --transition-normal: 0.3s ease;
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       Z-INDEX LAYERS
+       Stacking order for overlapping elements
+       ═══════════════════════════════════════════════════════════════════════ */
+    
+    /* --z-header: Header component layer */
+    --z-header: 100;
+    
+    /* --z-modal: Modal dialogs and overlays */
+    --z-modal: 1000;
+    
+    /* --z-tooltip: Tooltips and popovers (highest layer) */
+    --z-tooltip: 2000;
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       UI ALIGNMENT SYSTEM - LAYOUT AND SPACING
+       Standardized values for consistent form and section alignment
+       Reference: Check-in/Check-out section
+       ═══════════════════════════════════════════════════════════════════════ */
+    
+    /* --section-padding: Standard padding for all form sections
+       Usage: Apply to .form-section containers
+       Value: 20px (consistent across all form containers)
+       Requirements: 1.5, 2.1 */
+    --section-padding: 20px;
+    
+    /* --element-gap: Standard gap between major UI elements
+       Usage: Button groups, form sections, grid gaps
+       Value: 15px (maintains visual rhythm)
+       Requirements: 1.2, 2.4 */
+    --element-gap: 15px;
+    
+    /* --input-gap: Gap between input fields in grids
+       Usage: Grid layouts, form field spacing
+       Value: 15px (same as element-gap for consistency)
+       Requirements: 1.2 */
+    --input-gap: 15px;
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       UI ALIGNMENT SYSTEM - INPUT FIELD DIMENSIONS
+       Standardized sizing for all text input fields
+       ═══════════════════════════════════════════════════════════════════════ */
+    
+    /* --input-padding-vertical: Vertical padding for input fields
+       Usage: All text inputs, textareas, select elements
+       Value: 11px (provides comfortable touch targets)
+       Requirements: 2.1 */
+    --input-padding-vertical: 11px;
+    
+    /* --input-padding-horizontal: Horizontal padding for input fields
+       Usage: All text inputs, textareas, select elements
+       Value: 14px (balances text spacing)
+       Requirements: 2.1 */
+    --input-padding-horizontal: 14px;
+    
+    /* --input-font-size: Font size for input field text
+       Usage: All input field content
+       Value: 13px (optimal readability)
+       Requirements: 2.1 */
+    --input-font-size: 13px;
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       UI ALIGNMENT SYSTEM - BUTTON DIMENSIONS
+       Standardized sizing for all button elements
+       ═══════════════════════════════════════════════════════════════════════ */
+    
+    /* --button-padding-vertical-sm: Small button vertical padding
+       Usage: Toggle buttons, compact action buttons
+       Value: 11px (matches input field padding)
+       Requirements: 2.2 */
+    --button-padding-vertical-sm: 11px;
+    
+    /* --button-padding-vertical-md: Medium button vertical padding
+       Usage: Primary action buttons, full-width buttons
+       Value: 13px (slightly larger for prominence)
+       Requirements: 2.3 */
+    --button-padding-vertical-md: 13px;
+    
+    /* --button-padding-horizontal: Horizontal padding for all buttons
+       Usage: All button types
+       Value: 30px (provides substantial click area)
+       Requirements: 2.2, 2.3 */
+    --button-padding-horizontal: 30px;
+    
+    /* --button-font-size: Font size for button text
+       Usage: All buttons
+       Value: 12px (clear and readable)
+       Requirements: 3.4 */
+    --button-font-size: 12px;
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       UI ALIGNMENT SYSTEM - TYPOGRAPHY
+       Standardized text styling for labels, placeholders, and buttons
+       ═══════════════════════════════════════════════════════════════════════ */
+    
+    /* --label-font-size: Font size for form labels
+       Usage: All form field labels
+       Value: 11px (compact but readable)
+       Requirements: 3.1 */
+    --label-font-size: 11px;
+    
+    /* --label-font-weight: Font weight for form labels
+       Usage: All form field labels
+       Value: 600 (semi-bold for emphasis)
+       Requirements: 3.1 */
+    --label-font-weight: 600;
+    
+    /* --label-letter-spacing: Letter spacing for form labels
+       Usage: All form field labels
+       Value: 0.5px (improves uppercase readability)
+       Requirements: 3.2 */
+    --label-letter-spacing: 0.5px;
+    
+    /* --placeholder-font-size: Font size for input placeholders
+       Usage: All input field placeholders
+       Value: 11px (matches label size)
+       Requirements: 3.3 */
+    --placeholder-font-size: 11px;
+    
+    /* --placeholder-opacity: Opacity for placeholder text
+       Usage: All input field placeholders
+       Value: 0.6 (subtle but visible)
+       Requirements: 3.3 */
+    --placeholder-opacity: 0.6;
+    
+    /* --button-letter-spacing: Letter spacing for button text
+       Usage: All buttons
+       Value: 1px (improves uppercase readability)
+       Requirements: 3.5 */
+    --button-letter-spacing: 1px;
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       UI ALIGNMENT SYSTEM - GRID CONFIGURATION
+       Standardized grid layout for form input fields
+       ═══════════════════════════════════════════════════════════════════════ */
+    
+    /* --form-grid-columns: Column configuration for input grids
+       Usage: .input-grid-3col utility class
+       Value: repeat(3, 1fr) - three equal columns
+       Responsive: Converts to 1fr (single column) at tablet breakpoint
+       Requirements: 1.2, 4.1 */
+    --form-grid-columns: repeat(3, 1fr);
+    
+    /* --form-grid-gap: Gap between grid items
+       Usage: .input-grid-3col utility class
+       Value: 15px (consistent with element-gap)
+       Requirements: 1.2 */
+    --form-grid-gap: 15px;
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       ACCESSIBILITY ENHANCEMENTS
+       Larger text sizes and spacing for improved readability
+       
+       Purpose: These variables provide enhanced typography and spacing for users
+       who view the interface from a distance (2-4 feet) or have reduced visual
+       acuity. Designed for security desk scenarios and older users (50+).
+       
+       Usage Pattern: Apply .form-section-accessible class to form containers
+       
+       Example:
+       <div class="form-section form-section-accessible">
+         <label class="label-standard">Access Card ID</label>
+         <input type="text" class="input-standard" />
+         <button class="action-button-full process-btn">Process</button>
+       </div>
+       
+       Responsive Behavior:
+       - Desktop (1280px+): Full enhanced sizes
+       - Tablet (768px-1279px): Maintained enhanced sizes
+       - Mobile (<768px): Reduced by 10% while maintaining readability
+       
+       Accessibility Compliance: WCAG 2.1 Level AA
+       ═══════════════════════════════════════════════════════════════════════ */
+
+    /* --accessibility-label-font-size: Enhanced label size for better readability
+       Usage: Form labels in accessibility-enhanced sections
+       Value: 22px (increased from 11px for distance viewing)
+       Increase: +100% from standard size
+       Recommended for: All form labels requiring enhanced visibility
+       Requirements: 1.1 */
+    --accessibility-label-font-size: 22px;
+
+    /* --accessibility-input-font-size: Enhanced input text size
+       Usage: Input field content in accessibility-enhanced sections
+       Value: 28px (increased from 13px for distance viewing)
+       Increase: +115% from standard size
+       Recommended for: Text inputs, textareas, select elements
+       Requirements: 1.2 */
+    --accessibility-input-font-size: 28px;
+
+    /* --accessibility-placeholder-font-size: Enhanced placeholder size
+       Usage: Input placeholders in accessibility-enhanced sections
+       Value: 22px (increased from 11px for distance viewing)
+       Increase: +100% from standard size
+       Recommended for: All input placeholder text
+       Requirements: 1.3 */
+    --accessibility-placeholder-font-size: 22px;
+
+    /* --accessibility-button-font-size: Enhanced button text size
+       Usage: Buttons in accessibility-enhanced sections
+       Value: 20px (increased from 12px for distance viewing)
+       Increase: +67% from standard size
+       Recommended for: Primary action buttons, submit buttons
+       Requirements: 1.4 */
+    --accessibility-button-font-size: 20px;
+
+    /* --accessibility-section-padding: Enhanced section padding
+       Usage: Form sections with accessibility improvements
+       Value: 30px (increased from 20px)
+       Increase: +50% from standard padding
+       Recommended for: All .form-section-accessible containers
+       Requirements: 3.1 */
+    --accessibility-section-padding: 30px;
+
+    /* --accessibility-input-padding-vertical: Enhanced input vertical padding
+       Usage: Input fields in accessibility-enhanced sections
+       Value: 18px (increased from 11px)
+       Increase: +64% from standard padding
+       Recommended for: All text inputs with enhanced font sizes
+       Requirements: 3.2 */
+    --accessibility-input-padding-vertical: 18px;
+
+    /* --accessibility-input-padding-horizontal: Enhanced input horizontal padding
+       Usage: Input fields in accessibility-enhanced sections
+       Value: 20px (increased from 14px)
+       Increase: +43% from standard padding
+       Recommended for: All text inputs with enhanced font sizes
+       Requirements: 3.3 */
+    --accessibility-input-padding-horizontal: 20px;
+
+    /* --accessibility-button-padding-vertical: Enhanced button vertical padding
+       Usage: Action buttons in accessibility-enhanced sections
+       Value: 20px (increased from 13px)
+       Increase: +54% from standard padding
+       Recommended for: All buttons with enhanced font sizes
+       Requirements: 3.4 */
+    --accessibility-button-padding-vertical: 20px;
+
+    /* --accessibility-element-gap: Enhanced gap between elements
+       Usage: Spacing between form elements in accessibility-enhanced sections
+       Value: 25px (increased from 15px)
+       Increase: +67% from standard gap
+       Recommended for: Grid gaps, element spacing in accessible forms
+       Requirements: 3.5 */
+    --accessibility-element-gap: 25px;
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       GUEST MODAL ACCESSIBILITY ENHANCEMENTS
+       Enhanced typography for guest modal to improve readability
+       
+       Purpose: Provides enhanced typography specifically for the guest registration
+       modal, ensuring visitor information is easily readable from a distance.
+       
+       Usage Pattern: Apply .guest-modal-accessible class to .guest-modal element
+       
+       Example:
+       <div class="guest-modal guest-modal-accessible">
+         <div class="guest-modal-content">
+           <label class="input-label">Guest Name</label>
+           <input type="text" class="scanner-input" />
+           <button class="action-btn">Check In</button>
+           <table class="device-table">...</table>
+         </div>
+       </div>
+       
+       Responsive Behavior:
+       - Desktop (1280px+): Full enhanced sizes
+       - Tablet (768px-1279px): Maintained enhanced sizes
+       - Mobile (<768px): Slightly reduced for optimal fit
+       
+       Accessibility Compliance: WCAG 2.1 Level AA
+       ═══════════════════════════════════════════════════════════════════════ */
+
+    /* --guest-modal-label-size: Enhanced label size for guest modal
+       Usage: Form labels in guest modal accessibility-enhanced sections
+       Value: 20px (increased for distance viewing)
+       Increase: +43% from standard 14px modal labels
+       Recommended for: All form labels in guest modal
+       Requirements: 2.1, 2.2, 2.3, 4.1, 4.2, 4.3, 4.4 */
+    --guest-modal-label-size: 20px;
+
+    /* --guest-modal-input-size: Enhanced input text size for guest modal
+       Usage: Input field content in guest modal accessibility-enhanced sections
+       Value: 24px (increased for distance viewing)
+       Increase: +50% from standard 16px modal inputs
+       Recommended for: Text inputs, scanner inputs in guest modal
+       Requirements: 2.1, 2.2, 2.3, 4.1, 4.2, 4.3, 4.4 */
+    --guest-modal-input-size: 24px;
+
+    /* --guest-modal-button-size: Enhanced button text size for guest modal
+       Usage: Buttons in guest modal accessibility-enhanced sections
+       Value: 20px (increased for distance viewing)
+       Increase: +54% from standard 13px modal buttons
+       Recommended for: Action buttons, process buttons in guest modal
+       Requirements: 2.1, 2.2, 2.3, 4.1, 4.2, 4.3, 4.4 */
+    --guest-modal-button-size: 20px;
+
+    /* --guest-modal-table-size: Enhanced table text size for guest modal
+       Usage: Table content in guest modal accessibility-enhanced sections
+       Value: 15px (increased for distance viewing)
+       Increase: +7% from standard 14px modal tables
+       Recommended for: Device tables, data tables in guest modal
+       Requirements: 2.1, 2.2, 2.3, 4.1, 4.2, 4.3, 4.4 */
+    --guest-modal-table-size: 15px;
+
+    /* --guest-modal-title-size: Enhanced title text size for guest modal
+       Usage: Section titles in guest modal accessibility-enhanced sections
+       Value: 22px (increased for distance viewing)
+       Increase: +10% from standard 20px modal titles
+       Recommended for: Modal titles, section headers in guest modal
+       Requirements: 2.1, 2.2, 2.3, 4.1, 4.2, 4.3, 4.4 */
+    --guest-modal-title-size: 22px;
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       TABLE ACCESSIBILITY ENHANCEMENTS
+       Enhanced typography for table content to improve readability
+       
+       Purpose: Provides enhanced typography for data tables, making transaction
+       records and asset information easier to read from a distance.
+       
+       Usage Pattern: Apply .asset-table-accessible class to table elements
+       
+       Example:
+       <table class="asset-table asset-table-accessible">
+         <thead>
+           <tr>
+             <th>Asset Tag</th>
+             <th>Status</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr>
+             <td>VG-001</td>
+             <td><span class="status-badge in">IN</span></td>
+           </tr>
+         </tbody>
+       </table>
+       
+       Responsive Behavior:
+       - Desktop (1280px+): Full enhanced sizes (14px)
+       - Tablet (768px-1279px): Maintained enhanced sizes
+       - Mobile (<768px): Slightly reduced (13px) for optimal fit
+       
+       Accessibility Compliance: WCAG 2.1 Level AA
+       ═══════════════════════════════════════════════════════════════════════ */
+
+    /* --table-header-font-size-accessible: Enhanced header size for tables
+       Usage: Table header cells in accessibility-enhanced tables
+       Value: 14px (increased from 10px for distance viewing)
+       Increase: +40% from standard size
+       Recommended for: All table headers requiring enhanced visibility
+       Requirements: 2.1, 2.2, 2.3 */
+    --table-header-font-size-accessible: 14px;
+
+    /* --table-body-font-size-accessible: Enhanced body text size for tables
+       Usage: Table body cells in accessibility-enhanced tables
+       Value: 14px (increased from 12px for distance viewing)
+       Increase: +17% from standard size
+       Recommended for: All table data cells
+       Requirements: 2.1, 2.2, 2.3 */
+    --table-body-font-size-accessible: 14px;
+
+    /* --table-badge-font-size-accessible: Enhanced badge size for tables
+       Usage: Status badges in accessibility-enhanced tables
+       Value: 13px (increased from 11px for distance viewing)
+       Increase: +18% from standard size
+       Recommended for: Status badges, labels within tables
+       Requirements: 2.1, 2.2, 2.3 */
+    --table-badge-font-size-accessible: 13px;
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       SECTION TITLE ACCESSIBILITY ENHANCEMENTS
+       Enhanced typography for section titles and headers to improve readability
+       
+       Purpose: Provides enhanced typography for section titles, making page
+       structure and navigation easier to understand from a distance.
+       
+       Usage Pattern: Applied automatically to .table-title, .section-title,
+       and .panel-title elements
+       
+       Example:
+       <h2 class="table-title">Daily Asset Register</h2>
+       <h3 class="section-title">Guest Information</h3>
+       <h3 class="panel-title">Watchlist</h3>
+       
+       Responsive Behavior:
+       - Desktop (1280px+): Full enhanced sizes (20px/18px)
+       - Tablet (768px-1279px): Maintained enhanced sizes
+       - Mobile (<768px): Maintained for clear hierarchy
+       
+       Accessibility Compliance: WCAG 2.1 Level AA
+       ═══════════════════════════════════════════════════════════════════════ */
+
+    /* --section-title-font-size-accessible: Enhanced section title size
+       Usage: Main section titles (.table-title, .section-title, .panel-title)
+       Value: 20px (increased for distance viewing)
+       Increase: +43% from standard 14px titles
+       Recommended for: Primary section headers, page titles
+       Requirements: 2.1, 2.2, 2.5 */
+    --section-title-font-size-accessible: 20px;
+
+    /* --subsection-title-font-size-accessible: Enhanced subsection title size
+       Usage: Subsection titles and secondary headers
+       Value: 18px (increased for distance viewing)
+       Increase: +29% from standard 14px subtitles
+       Recommended for: Secondary headers, subsection titles
+       Requirements: 2.1, 2.2, 2.5 */
+    --subsection-title-font-size-accessible: 18px;
+}
+
+/* Support for older browsers */
+@supports not (--css: variables) {
+    body {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+}
+
+/* ===================================
+   Global Styles
+   =================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    color: var(--color-text-gray);
+    background-color: var(--color-white);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth scrolling for better UX */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Screen reader only content */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Focus visible styles for keyboard navigation */
+*:focus-visible {
+    outline: 3px solid var(--color-brand-red);
+    outline-offset: 2px;
+}
+
+/* Skip to main content link for accessibility */
+.skip-to-main {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--color-brand-red);
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    z-index: 100;
+}
+
+.skip-to-main:focus {
+    top: 0;
+}
+
+/* ===================================
+   Icon Styles - Lucide Icons
+   =================================== */
+
+/* Base icon styling for all Lucide icons */
+[data-lucide] {
+    display: inline-block;
+    vertical-align: middle;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+}
+
+/* Icon size adjustments */
+.guard-icon[data-lucide] {
+    width: 16px;
+    height: 16px;
+}
+
+.icon-checkmark[data-lucide],
+.icon-x[data-lucide],
+.icon-heartbeat[data-lucide] {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2.5;
+}
+
+.toggle-icon[data-lucide] {
+    width: 16px;
+    height: 16px;
+}
+
+.icon-search[data-lucide] {
+    width: 18px;
+    height: 18px;
+}
+
+.icon-refresh[data-lucide],
+.icon-export[data-lucide] {
+    width: 16px;
+    height: 16px;
+}
+
+.icon-flag[data-lucide] {
+    width: 18px;
+    height: 18px;
+}
+
+.icon-clock[data-lucide] {
+    width: 16px;
+    height: 16px;
+}
+
+/* ===================================
+   Reusable Utility CSS Classes
+   UI Alignment Consistency System
+   =================================== */
+
+/* 
+   .form-section
+   
+   Purpose: Standardized container for all form sections
+   
+   Usage: Apply to any form container to ensure consistent styling
+   
+   Example:
+   <div class="form-section">
+     <!-- Form content here -->
+   </div>
+   
+   Features:
+   - White background with subtle shadow
+   - Generous 28px padding for modern look
+   - 4px border radius for professional appearance
+   - Light gray border for definition
+   
+   Requirements: 1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.1, 3.2, 3.3
+*/
+.form-section {
+    background-color: var(--color-white);
+    padding: 28px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--color-border-gray);
+}
+
+/* 
+   .button-group-centered
+   
+   Purpose: Centered horizontal button group with consistent spacing
+   
+   Usage: Apply to containers holding toggle buttons or action button groups
+   
+   Example:
+   <div class="button-group-centered">
+     <button>Option 1</button>
+     <button>Option 2</button>
+   </div>
+   
+   Features:
+   - Flexbox layout with centered alignment
+   - 15px gap between buttons
+   - 20px bottom margin for spacing from content below
+   - Responsive: stacks vertically on mobile (<768px)
+   
+   Requirements: 1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.1, 3.2, 3.3
+*/
+.button-group-centered {
+    display: flex;
+    gap: var(--element-gap);
+    margin-bottom: var(--section-padding);
+    justify-content: center;
+}
+
+/* 
+   .input-grid-3col
+   
+   Purpose: Three-column grid layout for input fields
+   
+   Usage: Apply to containers holding multiple input groups
+   
+   Example:
+   <div class="input-grid-3col">
+     <div class="input-group">
+       <label>Field 1</label>
+       <input type="text" />
+     </div>
+     <div class="input-group">
+       <label>Field 2</label>
+       <input type="text" />
+     </div>
+     <div class="input-group">
+       <label>Field 3</label>
+       <input type="text" />
+     </div>
+   </div>
+   
+   Features:
+   - CSS Grid with 3 equal columns
+   - 15px gap between grid items
+   - 15px bottom margin for spacing from content below
+   - Responsive: converts to single column on tablet (<1280px)
+   
+   Requirements: 1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.1, 3.2, 3.3
+*/
+.input-grid-3col {
+    display: grid;
+    grid-template-columns: var(--form-grid-columns);
+    gap: var(--form-grid-gap);
+    margin-bottom: var(--element-gap);
+}
+
+/* 
+   .action-button-full
+   
+   Purpose: Full-width action button with standardized styling
+   
+   Usage: Apply to primary action buttons (submit, process, save, etc.)
+   
+   Example:
+   <button class="action-button-full">Process Transaction</button>
+   
+   Features:
+   - Full width (100%) for visual prominence
+   - 13px vertical padding, 30px horizontal padding
+   - 12px font size, bold weight, uppercase text
+   - 1px letter spacing for readability
+   - Vision Group red background (#CF2E2E)
+   - Smooth hover and active states
+   
+   Note: This class provides layout and typography. Combine with color
+   classes or custom styles for different button types (primary, secondary, etc.)
+   
+   Requirements: 1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.1, 3.2, 3.3
+*/
+.action-button-full {
+    width: 100%;
+    padding: var(--button-padding-vertical-md) var(--button-padding-horizontal);
+    font-size: var(--button-font-size);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: var(--button-letter-spacing);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+
+/* 
+   .input-standard
+   
+   Purpose: Standardized input field styling for consistent form appearance
+   
+   Usage: Apply to all text input fields, textareas, and select elements
+   
+   Example:
+   <input type="text" class="input-standard" placeholder="Enter value" />
+   
+   Features:
+   - Full width (100%) within container
+   - 11px vertical padding, 14px horizontal padding
+   - 13px font size for readability
+   - Light gray border (#DDDDDD)
+   - 4px border radius
+   - Proper height to fit text perfectly
+   - Focus state: Vision Group red border with subtle shadow
+   - Placeholder: 11px uppercase text with 60% opacity
+   
+   Requirements: 1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.1, 3.2, 3.3
+*/
+.input-standard {
+    width: 100%;
+    padding: var(--input-padding-vertical) var(--input-padding-horizontal);
+    font-size: var(--input-font-size);
+    font-family: var(--font-family);
+    border: 2px solid var(--color-border-gray);
+    border-radius: var(--border-radius);
+    background-color: var(--color-white);
+    color: var(--color-text-gray);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    line-height: 1.5;
+    min-height: 48px;
+    box-sizing: border-box;
+    font-weight: 500;
+}
+
+.input-standard:focus {
+    outline: none;
+    border-color: var(--color-brand-red);
+    box-shadow: 0 0 0 3px rgba(207, 46, 46, 0.15);
+    background-color: var(--color-white);
+}
+
+.input-standard::placeholder {
+    color: var(--color-medium-gray);
+    opacity: var(--placeholder-opacity);
+    text-transform: uppercase;
+    font-size: var(--placeholder-font-size);
+    font-weight: 400;
+}
+
+/* 
+   .label-standard
+   
+   Purpose: Standardized label styling for form fields
+   
+   Usage: Apply to all form labels for consistent typography
+   
+   Example:
+   <label class="label-standard">Asset Tag</label>
+   
+   Features:
+   - 11px font size
+   - 600 font weight (semi-bold)
+   - Uppercase text transformation
+   - 0.5px letter spacing for readability
+   - Dark gray color (#1A1A1A)
+   
+   Requirements: 1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.1, 3.2, 3.3
+*/
+.label-standard {
+    font-size: var(--label-font-size);
+    font-weight: var(--label-font-weight);
+    text-transform: uppercase;
+    letter-spacing: var(--label-letter-spacing);
+    color: var(--color-text-gray);
+}
+
+/* 
+   .form-section-accessible
+   
+   Purpose: Enhanced form section with improved accessibility
+   
+   Usage: Apply to form containers requiring larger text for readability
+   
+   Example:
+   <div class="form-section form-section-accessible">
+     <!-- Form content with enhanced typography -->
+   </div>
+   
+   Features:
+   - Inherits all .form-section styling
+   - Overrides typography with larger, more readable sizes
+   - Enhanced padding for better spacing
+   - Maintains responsive behavior
+   
+   Requirements: 1.1, 1.2, 1.3, 1.4, 1.5, 3.1, 3.2, 3.3, 3.4, 3.5
+*/
+.form-section-accessible {
+    padding: var(--accessibility-section-padding);
+}
+
+.form-section-accessible .label-standard {
+    font-size: var(--accessibility-label-font-size);
+}
+
+.form-section-accessible .input-standard {
+    font-size: var(--accessibility-input-font-size);
+    padding: var(--accessibility-input-padding-vertical) var(--accessibility-input-padding-horizontal);
+    line-height: 1.4;
+    min-height: 68px;
+    box-sizing: border-box;
+}
+
+.form-section-accessible .input-standard::placeholder {
+    font-size: var(--accessibility-placeholder-font-size);
+}
+
+.form-section-accessible .action-button-full {
+    font-size: var(--accessibility-button-font-size);
+    padding: var(--accessibility-button-padding-vertical) var(--button-padding-horizontal);
+}
+
+.form-section-accessible .input-grid-3col {
+    gap: var(--accessibility-element-gap);
+    margin-bottom: var(--accessibility-element-gap);
+}
+
+.form-section-accessible .input-group {
+    gap: 10px;
+}
+
+/* Fallback for browsers without CSS variable support */
+@supports not (--css: variables) {
+    .form-section-accessible {
+        padding: 30px;
+    }
+    
+    .form-section-accessible label {
+        font-size: 22px;
+    }
+    
+    .form-section-accessible input {
+        font-size: 28px;
+        padding: 18px 20px;
+    }
+    
+    .form-section-accessible button {
+        font-size: 20px;
+        padding: 20px 30px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   COMPONENT PATTERNS
+   Reusable layout patterns for common UI structures
+   ═══════════════════════════════════════════════════════════════════════════
+
+   These patterns combine utility classes to create standard layouts.
+   Use these patterns as templates when building new features.
+
+   ───────────────────────────────────────────────────────────────────────────
+   PATTERN A: Form with Toggle Buttons
+   ───────────────────────────────────────────────────────────────────────────
+   
+   Description: Complete form interface with mode selection buttons
+   
+   Use Cases:
+   - Check-in/Check-out interface (current implementation)
+   - Any form requiring mode selection or tabs
+   - Multi-step forms with navigation
+   
+   HTML Structure:
+   
+   <div class="form-section">
+     <!-- Toggle/Mode Selection Buttons -->
+     <div class="button-group-centered">
+       <button class="toggle-btn active">Mode 1</button>
+       <button class="toggle-btn">Mode 2</button>
+     </div>
+     
+     <!-- Input Fields Grid -->
+     <div class="input-grid-3col">
+       <div class="input-group">
+         <label class="label-standard">Field 1</label>
+         <input type="text" class="input-standard" />
+       </div>
+       <div class="input-group">
+         <label class="label-standard">Field 2</label>
+         <input type="text" class="input-standard" />
+       </div>
+       <div class="input-group">
+         <label class="label-standard">Field 3</label>
+         <input type="text" class="input-standard" />
+       </div>
+     </div>
+     
+     <!-- Primary Action Button -->
+     <button class="action-button-full process-btn">Submit</button>
+   </div>
+   
+   Visual Characteristics:
+   - White container with subtle shadow
+   - Centered toggle buttons with 15px gap
+   - 3-column input grid (responsive to single column)
+   - Full-width action button at bottom
+   - Consistent 20px padding throughout
+   
+   Responsive Behavior:
+   - Desktop (1280px+): 3-column grid, horizontal buttons
+   - Tablet (768px-1279px): Single-column grid, horizontal buttons
+   - Mobile (<768px): Single-column grid, vertical buttons
+   
+   Requirements: 1.1, 1.2, 1.3, 1.4, 1.5, 2.1-2.5, 3.1-3.5, 4.1-4.5
+
+   ───────────────────────────────────────────────────────────────────────────
+   PATTERN B: Simple Form
+   ───────────────────────────────────────────────────────────────────────────
+   
+   Description: Basic form without mode selection
+   
+   Use Cases:
+   - Search forms
+   - Filter forms
+   - Simple data entry forms
+   - Quick action forms
+   
+   HTML Structure:
+   
+   <div class="form-section">
+     <!-- Input Fields Grid -->
+     <div class="input-grid-3col">
+       <div class="input-group">
+         <label class="label-standard">Field 1</label>
+         <input type="text" class="input-standard" />
+       </div>
+       <div class="input-group">
+         <label class="label-standard">Field 2</label>
+         <input type="text" class="input-standard" />
+       </div>
+       <div class="input-group">
+         <label class="label-standard">Field 3</label>
+         <input type="text" class="input-standard" />
+       </div>
+     </div>
+     
+     <!-- Primary Action Button -->
+     <button class="action-button-full">Submit</button>
+   </div>
+   
+   Visual Characteristics:
+   - White container with subtle shadow
+   - 3-column input grid (responsive to single column)
+   - Full-width action button at bottom
+   - Consistent 20px padding throughout
+   - No toggle buttons or mode selection
+   
+   Responsive Behavior:
+   - Desktop (1280px+): 3-column grid
+   - Tablet (768px-1279px): Single-column grid
+   - Mobile (<768px): Single-column grid
+   
+   Requirements: 1.1, 1.2, 1.3, 2.1-2.5, 3.1-3.5, 4.1-4.5
+
+   ───────────────────────────────────────────────────────────────────────────
+   PATTERN C: Form with Search
+   ───────────────────────────────────────────────────────────────────────────
+   
+   Description: Form with integrated search functionality
+   
+   Use Cases:
+   - Asset trace interface
+   - Transaction search
+   - Lookup forms
+   - Filter with search
+   
+   HTML Structure:
+   
+   <div class="form-section">
+     <!-- Input Fields Grid with Search -->
+     <div class="input-grid-3col">
+       <div class="input-group">
+         <label class="label-standard">Search Field</label>
+         <div class="input-with-icon">
+           <input type="text" class="input-standard input-field" />
+           <button class="search-icon-btn" type="button">
+             <span class="icon-search">🔍</span>
+           </button>
+         </div>
+       </div>
+       <div class="input-group">
+         <label class="label-standard">Field 2</label>
+         <input type="text" class="input-standard" />
+       </div>
+       <div class="input-group">
+         <label class="label-standard">Field 3</label>
+         <input type="text" class="input-standard" />
+       </div>
+     </div>
+     
+     <!-- Optional Action Button -->
+     <button class="action-button-full">Process</button>
+   </div>
+   
+   Visual Characteristics:
+   - White container with subtle shadow
+   - 3-column input grid (responsive to single column)
+   - Search icon positioned at right edge of input (5px offset)
+   - Optional full-width action button
+   - Consistent 20px padding throughout
+   
+   Search Icon Positioning:
+   - Parent: position: relative
+   - Icon button: position: absolute, right: 5px
+   - Input padding-right: 45px (accommodates icon)
+   
+   Responsive Behavior:
+   - Desktop (1280px+): 3-column grid
+   - Tablet (768px-1279px): Single-column grid
+   - Mobile (<768px): Single-column grid
+   
+   Requirements: 1.1, 1.2, 1.3, 1.4, 2.1-2.5, 3.1-3.5, 4.1-4.5
+
+   ───────────────────────────────────────────────────────────────────────────
+   VISUAL CONSISTENCY VALIDATION CHECKLIST
+   ───────────────────────────────────────────────────────────────────────────
+   
+   Use this checklist to verify that new components maintain alignment
+   consistency with the reference implementation (check-in section).
+   
+   ✓ LAYOUT STRUCTURE
+     □ Form container uses .form-section class
+     □ Section padding is 20px (var(--section-padding))
+     □ White background with subtle shadow
+     □ 4px border-radius (var(--border-radius))
+     □ Light gray border (#DDDDDD)
+   
+   ✓ BUTTON GROUPS
+     □ Button container uses .button-group-centered class
+     □ Buttons are horizontally centered
+     □ Gap between buttons is 15px (var(--element-gap))
+     □ Bottom margin is 20px (var(--section-padding))
+     □ Buttons stack vertically on mobile (<768px)
+   
+   ✓ INPUT GRIDS
+     □ Input container uses .input-grid-3col class
+     □ Desktop shows 3 equal columns
+     □ Gap between inputs is 15px (var(--form-grid-gap))
+     □ Converts to single column on tablet (<1280px)
+     □ Bottom margin is 15px (var(--element-gap))
+   
+   ✓ INPUT FIELDS
+     □ All inputs use .input-standard class
+     □ Vertical padding is 11px (var(--input-padding-vertical))
+     □ Horizontal padding is 14px (var(--input-padding-horizontal))
+     □ Font size is 13px (var(--input-font-size))
+     □ Border color is #DDDDDD (var(--color-border-gray))
+     □ Focus border is #CF2E2E (var(--color-brand-red))
+     □ Focus shadow is 3px rgba(207, 46, 46, 0.1)
+   
+   ✓ LABELS
+     □ All labels use .label-standard class
+     □ Font size is 11px (var(--label-font-size))
+     □ Font weight is 600 (var(--label-font-weight))
+     □ Text is uppercase
+     □ Letter spacing is 0.5px (var(--label-letter-spacing))
+   
+   ✓ BUTTONS
+     □ Toggle buttons: 11px vertical padding (var(--button-padding-vertical-sm))
+     □ Action buttons: 13px vertical padding (var(--button-padding-vertical-md))
+     □ All buttons: 30px horizontal padding (var(--button-padding-horizontal))
+     □ Font size is 12px (var(--button-font-size))
+     □ Text is uppercase and bold
+     □ Letter spacing is 1px (var(--button-letter-spacing))
+   
+   ✓ ACTION BUTTONS
+     □ Primary action uses .action-button-full class
+     □ Width is 100%
+     □ Background is #CF2E2E (var(--color-brand-red))
+     □ Hover background is #B02626 (var(--color-brand-red-dark))
+     □ Text color is white
+   
+   ✓ RESPONSIVE BEHAVIOR
+     □ Desktop (1280px+): 3-column grid, horizontal buttons
+     □ Tablet (768px-1279px): Single-column grid, horizontal buttons
+     □ Mobile (<768px): Single-column grid, vertical buttons
+     □ All spacing values maintained at all breakpoints
+     □ Centered alignment preserved during transitions
+   
+   ✓ COLORS
+     □ Form backgrounds: #FFFFFF (var(--color-white))
+     □ Input borders: #DDDDDD (var(--color-border-gray))
+     □ Brand red: #CF2E2E (var(--color-brand-red))
+     □ Focus states: #CF2E2E with rgba(207, 46, 46, 0.1) shadow
+     □ Hover backgrounds: #F5F5F5 (var(--color-light-gray))
+   
+   ✓ ACCESSIBILITY
+     □ Focus states are clearly visible
+     □ Tab order follows visual layout
+     □ Labels are associated with inputs
+     □ Touch targets are at least 44x44px on mobile
+     □ Color contrast meets WCAG AA standards
+   
+   Requirements: All (1.1-5.5)
+
+   ───────────────────────────────────────────────────────────────────────────
+   IMPLEMENTATION NOTES
+   ───────────────────────────────────────────────────────────────────────────
+   
+   When creating new form sections:
+   
+   1. START WITH A PATTERN
+      Choose Pattern A, B, or C based on your requirements
+      Copy the HTML structure as a starting point
+   
+   2. APPLY UTILITY CLASSES
+      Use the documented utility classes (.form-section, .button-group-centered,
+      .input-grid-3col, .action-button-full, .input-standard, .label-standard)
+   
+   3. CUSTOMIZE MINIMALLY
+      Only add custom styles for unique functionality
+      Avoid overriding utility class styles
+   
+   4. TEST RESPONSIVELY
+      Verify layout at all three breakpoints (desktop, tablet, mobile)
+      Use browser dev tools to test at 1920px, 1024px, and 375px
+   
+   5. VALIDATE CONSISTENCY
+      Use the Visual Consistency Validation Checklist above
+      Compare against the check-in section (reference implementation)
+   
+   6. MAINTAIN ACCESSIBILITY
+      Ensure keyboard navigation works correctly
+      Verify focus states are visible
+      Test with screen readers if possible
+   
+   For questions or clarifications, refer to:
+   - Design Document: .kiro/specs/ui-alignment-consistency/design.md
+   - Requirements: .kiro/specs/ui-alignment-consistency/requirements.md
+   - Reference Implementation: Check-in/Check-out section in HTML
+
+═══════════════════════════════════════════════════════════════════════════ */
+
+/* ===================================
+   Header Component - Slim Corporate Dashboard
+   Updated: 2026-01-30 - Unified Header Bar with Slim Red Stats
+   =================================== */
+.header {
+    background-color: #f8f9fa;
+    color: var(--color-dark-gray);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    position: relative;
+}
+
+/* Unified Header Bar - Single horizontal bar */
+.header-top {
+    padding: 20px 30px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 40px;
+}
+
+/* Header Left: Logo */
+.header-left {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+/* Vision Group Logo Styling - Full logo with tagline included */
+.vision-logo {
+    height: 70px;
+    width: auto;
+    max-width: 300px;
+    object-fit: contain;
+}
+
+/* Logo Fallback - Text-based Vision Group Logo */
+.logo-fallback {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 8px 0;
+}
+
+.logo-text {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    line-height: 1;
+}
+
+.logo-vision {
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #2c2c2c;
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.logo-group {
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #CF2E2E;
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.logo-tagline-fallback {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #6c757d;
+    text-transform: uppercase;
+    margin-top: 2px;
+}
+
+/* Red line between logo and tagline */
+.logo-red-line {
+    width: 100%;
+    max-width: 280px;
+    height: 3px;
+    background: linear-gradient(90deg, #CF2E2E 0%, #CF2E2E 100%);
+    margin: 4px 0;
+    border-radius: 1px;
+}
+
+.logo-placeholder {
+    width: 45px;
+    height: 45px;
+    background-color: var(--color-brand-red);
+    color: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.company-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
+}
+
+.company-name {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    color: var(--color-dark-gray);
+    text-transform: uppercase;
+}
+
+.company-location {
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.8px;
+    color: var(--color-medium-gray);
+}
+
+/* Header Center: Title and Subtitle - Professional & Modern */
+.header-center {
+    flex: 1;
+    text-align: center;
+    padding: 0 30px;
+}
+
+.main-title {
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    letter-spacing: 8px;
+    color: #1a1a1a;
+    text-transform: uppercase;
+    line-height: 1.2;
+    font-family: 'Inter', 'Roboto', var(--font-family);
+}
+
+.subtitle {
+    font-size: 15px;
+    font-weight: 500;
+    color: #666666;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+/* Header Right: Guard Profile Widget */
+.header-right {
+    flex: 0 0 auto;
+    text-align: right;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.guard-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+}
+
+.guard-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.guard-label {
+    display: none;
+}
+
+.guard-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a1a;
+    line-height: 1.2;
+}
+
+.current-date {
+    font-size: 12px;
+    font-weight: 400;
+    color: #666666;
+    line-height: 1.2;
+}
+
+/* Slim Red Stat Cards - Matching Reference Design */
+.header-stats {
+    background-color: #CF2E2E;
+    padding: 16px 30px;
+    transition: background-color 0.4s ease;
+}
+
+/* Entry Mode - Professional Blue Theme */
+body.entry-mode .header-stats {
+    background-color: #2C5F8D;
+}
+
+body.entry-mode .stat-card {
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+body.entry-mode .guests-btn {
+    background-color: #2C5F8D;
+}
+
+body.entry-mode .guests-btn:hover {
+    background-color: #234A6F;
+}
+
+body.entry-mode .watchlist-panel {
+    background-color: #2C5F8D;
+}
+
+body.entry-mode .process-btn {
+    background-color: #2C5F8D;
+}
+
+body.entry-mode .process-btn:hover {
+    background-color: #234A6F;
+}
+
+/* Exit Mode - Red Theme (default) */
+body.exit-mode .header-stats {
+    background-color: #CF2E2E;
+}
+
+body.exit-mode .stat-card {
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+body.exit-mode .guests-btn {
+    background-color: #CF2E2E;
+}
+
+body.exit-mode .guests-btn:hover {
+    background-color: var(--color-brand-red-dark);
+}
+
+body.exit-mode .watchlist-panel {
+    background-color: #CF2E2E;
+}
+
+body.exit-mode .process-btn {
+    background-color: #CF2E2E;
+}
+
+body.exit-mode .process-btn:hover {
+    background-color: var(--color-brand-red-dark);
+}
+
+.stats-container {
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.stat-card {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 32px;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 85px;
+    max-width: 380px;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Semi-transparent icon on the right - exactly like reference */
+.stat-icon {
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 65px;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 65px;
+    color: rgba(255, 255, 255, 0.12);
+    z-index: 1;
+}
+
+.icon-checkmark,
+.icon-x,
+.icon-heartbeat {
+    display: block;
+    stroke-width: 1.5;
+}
+
+/* Stat Card Content - White text on red, left-aligned */
+.stat-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    color: #ffffff;
+    z-index: 2;
+    position: relative;
+}
+
+.stat-number {
+    font-size: 44px;
+    font-weight: 700;
+    line-height: 1;
+    color: #ffffff;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+/* Number animation for statistics updates */
+@keyframes numberPulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.stat-number.updated {
+    animation: numberPulse 0.5s ease;
+}
+
+.stat-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #ffffff;
+    line-height: 1.3;
+    opacity: 0.95;
+}
+
+/* ===================================
+   Header Mode Toggle Section
+   =================================== */
+/* 
+   Purpose: Dedicated header section for mode toggle buttons
+   
+   Usage: Contains the check-in/check-out mode selection buttons
+   
+   Features:
+   - White background matching header-top section
+   - Centered toggle buttons
+   - Border-top for visual separation
+   - Consistent padding with other header sections
+   - Responsive behavior at all breakpoints
+   
+   Requirements: 2.1, 2.3, 2.4
+*/
+.header-mode-toggle {
+    background-color: var(--color-white);
+    padding: 15px var(--spacing-xl);
+    border-top: 1px solid var(--color-border-gray);
+}
+
+.mode-toggle-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.header-mode-toggle .mode-toggle {
+    margin-bottom: 0;
+}
+
+/* ===================================
+   Responsive Design for Header
+   =================================== */
+@media screen and (max-width: 1279px) {
+    .header-container {
+        gap: 25px;
+    }
+
+    .header-top {
+        padding: 18px 25px;
+    }
+
+    .header-stats {
+        padding: 14px 25px;
+    }
+
+    .header-center {
+        padding: 0 20px;
+    }
+
+    .main-title {
+        font-size: 30px;
+        letter-spacing: 6px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+    }
+
+    .stat-card {
+        padding: 18px 28px;
+        min-height: 80px;
+        min-width: 260px;
+        max-width: 300px;
+    }
+
+    .stat-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 60px;
+        right: 22px;
+    }
+
+    .stat-number {
+        font-size: 40px;
+    }
+
+    .stat-label {
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .header-container {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .header-top {
+        padding: 16px 20px;
+    }
+
+    .header-stats {
+        padding: 14px 20px;
+    }
+
+    .header-left {
+        flex: 0 0 auto;
+    }
+
+    .header-center {
+        flex: 1 1 100%;
+        order: 3;
+        padding: 10px 0 0 0;
+    }
+
+    .header-right {
+        flex: 0 0 auto;
+    }
+
+    .main-title {
+        font-size: 26px;
+        letter-spacing: 5px;
+    }
+
+    .subtitle {
+        font-size: 13px;
+    }
+
+    .stats-container {
+        gap: 20px;
+    }
+
+    .stat-card {
+        padding: 16px 24px;
+        min-height: 75px;
+        min-width: 240px;
+        max-width: 280px;
+    }
+
+    .stat-icon {
+        width: 55px;
+        height: 55px;
+        font-size: 55px;
+        right: 20px;
+    }
+
+    .stat-number {
+        font-size: 36px;
+    }
+
+    .stat-label {
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .header-top {
+        padding: 14px 15px;
+    }
+
+    .header-stats {
+        padding: 12px 15px;
+    }
+
+    .header-mode-toggle {
+        padding: 15px var(--spacing-md);
+    }
+
+    .header-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .header-left,
+    .header-center,
+    .header-right {
+        flex: none;
+        width: 100%;
+    }
+
+    .header-left {
+        align-items: center;
+    }
+
+    .header-right {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .guard-info {
+        align-items: center;
+    }
+
+    .logo-container {
+        justify-content: center;
+    }
+
+    .header-center {
+        padding: 0;
+        order: 2;
+    }
+
+    .vision-logo {
+        height: 55px;
+        max-width: 260px;
+    }
+
+    .logo-vision,
+    .logo-group {
+        font-size: 22px;
+        letter-spacing: 1.5px;
+    }
+
+    .logo-tagline-fallback {
+        font-size: 9px;
+        text-align: center;
+        letter-spacing: 1.8px;
+    }
+    
+    .logo-red-line {
+        max-width: 220px;
+    }
+
+    .main-title {
+        font-size: 20px;
+        letter-spacing: 3px;
+    }
+
+    .subtitle {
+        font-size: 11px;
+    }
+
+    .guard-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+    }
+
+    .guard-name {
+        font-size: 13px;
+    }
+
+    .current-date {
+        font-size: 11px;
+    }
+
+    .stats-container {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .stat-card {
+        padding: 16px 24px;
+        min-height: 70px;
+        width: 100%;
+        max-width: 340px;
+    }
+
+    .stat-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 50px;
+        right: 20px;
+    }
+
+    .stat-number {
+        font-size: 34px;
+    }
+
+    .stat-label {
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+}
+
+/* ===================================
+   Main Content Layout
+   =================================== */
+.main-content {
+    padding: 30px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 20px;
+}
+
+.left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.right-column {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===================================
+   Statistics Dashboard Cards
+   =================================== */
+.statistics-dashboard {
+    background-color: var(--color-white);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: none;
+    /* Hidden as stats are now in header */
+}
+
+/* ===================================
+   Responsive Design for Statistics
+   =================================== */
+@media screen and (max-width: 1279px) {
+    .stats-container {
+        flex-wrap: wrap;
+    }
+
+    .stat-card {
+        min-width: calc(50% - var(--spacing-sm));
+    }
+
+    .stat-number {
+        font-size: 32px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .stats-container {
+        flex-direction: column;
+    }
+
+    .stat-card {
+        min-width: 100%;
+    }
+}
+
+/* ===================================
+   Check-In/Check-Out Interface
+   =================================== */
+/* 
+   Note: .checkin-checkout-section now uses .form-section utility class
+   Note: .mode-toggle now uses .button-group-centered utility class
+   Redundant styles removed - see utility classes section above
+*/
+
+/* Mode Toggle Buttons */
+
+.toggle-btn {
+    flex: 0 1 200px;
+    padding: var(--button-padding-vertical-sm) var(--button-padding-horizontal);
+    font-size: var(--button-font-size);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: var(--button-letter-spacing);
+    border: 2px solid var(--color-border-gray);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    background-color: var(--color-white);
+    color: var(--color-medium-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.toggle-icon {
+    font-size: 15px;
+}
+
+.toggle-btn.active {
+    background-color: var(--color-brand-red);
+    color: var(--color-white);
+    border-color: var(--color-brand-red);
+    box-shadow: none;
+}
+
+.toggle-btn:not(.active):hover {
+    background-color: var(--color-light-gray);
+    border-color: var(--color-medium-gray);
+    transform: none;
+    box-shadow: none;
+}
+
+.toggle-btn.active:hover {
+    background-color: var(--color-brand-red-dark);
+    border-color: var(--color-brand-red-dark);
+    transform: none;
+    box-shadow: none;
+}
+
+.toggle-btn:active {
+    transform: translateY(0);
+}
+
+/* Input Container */
+/* 
+   Note: .input-container now uses .input-grid-3col utility class
+   Redundant styles removed - see utility classes section above
+*/
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* 
+   Note: .input-group label now uses .label-standard utility class
+   Note: .input-field now uses .input-standard utility class
+   Redundant styles removed - see utility classes section above
+*/
+
+/* Input with Icon (Trace Asset) */
+.input-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-with-icon .input-field {
+    padding-right: 45px;
+}
+
+.search-icon-btn {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: var(--border-radius);
+    transition: background-color var(--transition-fast);
+}
+
+.search-icon-btn:hover {
+    background-color: var(--color-light-gray);
+}
+
+.search-icon-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.icon-search {
+    font-size: 18px;
+}
+
+/* Process Button - Vision Group Brand Red */
+/* 
+   Note: .process-btn now uses .action-button-full utility class for layout/typography
+   Keeping color and interaction styles specific to this button
+*/
+.process-btn {
+    background-color: var(--color-brand-red);
+    color: var(--color-white);
+}
+
+.process-btn:hover {
+    background-color: var(--color-brand-red-dark);
+}
+
+.process-btn:active {
+    transform: translateY(0);
+}
+
+.process-btn.success {
+    background-color: var(--color-green);
+    animation: successPulse 0.5s ease;
+}
+
+@keyframes successPulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Validation Errors */
+.validation-errors {
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-md);
+    background-color: rgba(220, 53, 69, 0.1);
+    border-left: 4px solid var(--color-red);
+    border-radius: var(--border-radius);
+}
+
+.error-message {
+    font-size: 14px;
+    color: var(--color-red);
+    font-weight: 500;
+    margin-bottom: var(--spacing-xs);
+}
+
+.error-message:last-child {
+    margin-bottom: 0;
+}
+
+/* Input Field Error State */
+.input-field.error {
+    border-color: var(--color-red);
+    background-color: rgba(220, 53, 69, 0.05);
+}
+
+.input-field.error:focus {
+    border-color: var(--color-red);
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.15);
+}
+
+/* Field Error Message */
+.field-error {
+    font-size: 13px;
+    color: var(--color-red);
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.field-error::before {
+    content: '⚠';
+    font-size: 14px;
+}
+
+/* ===================================
+   Responsive Design for Check-In/Check-Out
+   =================================== */
+/* 
+   Note: Responsive styles for .input-container and .mode-toggle are now
+   handled by utility classes (.input-grid-3col and .button-group-centered)
+   See responsive utility classes section below
+*/
+
+@media screen and (max-width: 767px) {
+    .toggle-btn {
+        width: 100%;
+    }
+}
+
+/* ===================================
+   Asset Register Table Section
+   =================================== */
+.asset-register-section {
+    background-color: var(--color-white);
+    padding: 28px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--color-border-gray);
+}
+
+.table-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.table-title {
+    font-size: var(--section-title-font-size-accessible);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-dark-gray);
+}
+
+.filter-dropdown {
+    padding: 8px 14px;
+    font-size: 13px;
+    font-family: var(--font-family);
+    border: 1px solid var(--color-border-gray);
+    border-radius: var(--border-radius);
+    background-color: var(--color-white);
+    color: var(--color-text-gray);
+    cursor: pointer;
+    transition: border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.filter-dropdown:hover {
+    background-color: var(--color-light-gray);
+    border-color: var(--color-medium-gray);
+}
+
+.filter-dropdown:focus {
+    outline: none;
+    border-color: var(--color-brand-red);
+}
+
+.control-btn {
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid var(--color-border-gray);
+    border-radius: var(--border-radius);
+    background-color: var(--color-white);
+    color: var(--color-text-gray);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.control-btn:hover {
+    background-color: var(--color-light-gray);
+    border-color: var(--color-medium-gray);
+    transform: none;
+    box-shadow: none;
+}
+
+.control-btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.control-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.control-btn:disabled:hover {
+    background-color: var(--color-white);
+    border-color: var(--color-border-gray);
+    transform: none;
+    box-shadow: none;
+}
+
+.control-btn.loading {
+    position: relative;
+    color: transparent;
+}
+
+.control-btn.loading::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    left: 50%;
+    margin-left: -8px;
+    margin-top: -8px;
+    border: 2px solid var(--color-medium-gray);
+    border-radius: 50%;
+    border-top-color: var(--color-brand-red);
+    animation: spin 0.6s linear infinite;
+}
+
+.control-btn.exporting {
+    position: relative;
+    color: transparent;
+}
+
+.control-btn.exporting::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    left: 50%;
+    margin-left: -8px;
+    margin-top: -8px;
+    border: 2px solid var(--color-medium-gray);
+    border-radius: 50%;
+    border-top-color: var(--color-green);
+    animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.icon-refresh {
+    display: inline-block;
+    transition: transform var(--transition-normal);
+}
+
+.control-btn:hover .icon-refresh {
+    transform: rotate(180deg);
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+.asset-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.asset-table thead {
+    background-color: var(--color-light-gray);
+}
+
+.asset-table th {
+    padding: 12px 14px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-text-gray);
+    border-bottom: 2px solid var(--color-border-gray);
+}
+
+.asset-table tbody tr {
+    border-bottom: 1px solid var(--color-light-gray);
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
+    will-change: background-color;
+}
+
+.asset-table tbody tr:nth-child(even) {
+    background-color: rgba(248, 249, 250, 0.5);
+}
+
+.asset-table tbody tr:hover,
+.asset-table tbody tr:focus {
+    background-color: var(--color-light-gray);
+    transform: none;
+    box-shadow: none;
+    outline: none;
+}
+
+.asset-table td {
+    padding: 11px 14px;
+    color: var(--color-text-gray);
+}
+
+/* Status Badges */
+.status-badge {
+    display: inline-block;
+    padding: 5px 14px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    transition: all var(--transition-fast);
+}
+
+.status-badge:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.status-badge.in {
+    background-color: var(--color-green);
+    color: var(--color-white);
+}
+
+.status-badge.out {
+    background-color: var(--color-orange);
+    color: var(--color-white);
+}
+
+/* Status Icons */
+.status-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all var(--transition-fast);
+}
+
+.status-icon:hover {
+    transform: none;
+}
+
+.status-icon.authorized {
+    background-color: rgba(40, 167, 69, 0.1);
+    color: var(--color-green);
+}
+
+.status-icon.unauthorized {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: var(--color-red);
+}
+
+/* Asset Tag Links */
+.asset-tag-link {
+    color: var(--color-brand-red);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all var(--transition-fast);
+    position: relative;
+}
+
+.asset-tag-link:hover {
+    text-decoration: underline;
+    color: var(--color-brand-red-dark);
+    transform: none;
+}
+
+.asset-tag-link:active {
+    color: var(--color-brand-red-dark);
+}
+
+/* Search Highlighting */
+.search-highlight {
+    background-color: #ffeb3b;
+    color: var(--color-dark-gray);
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-weight: 600;
+}
+
+.search-result {
+    animation: highlightRow 0.5s ease;
+}
+
+@keyframes highlightRow {
+    0% {
+        background-color: rgba(255, 235, 59, 0.3);
+    }
+
+    100% {
+        background-color: transparent;
+    }
+}
+
+/* ===================================
+   Asset Table Accessibility Enhancement
+   =================================== */
+
+/* 
+   .asset-table-accessible
+   
+   Purpose: Enhanced table typography for improved readability
+   
+   Usage: Apply to .asset-table elements requiring larger text for distance viewing
+   
+   Example:
+   <table class="asset-table asset-table-accessible">
+     <!-- Table content with enhanced typography -->
+   </table>
+   
+   Features:
+   - Enhanced header font size (14px, increased from 10px)
+   - Enhanced body font size (14px, increased from 12px)
+   - Enhanced badge font size (13px, increased from 11px)
+   - Adjusted cell padding to accommodate larger text
+   - Maintains responsive behavior and table structure
+   
+   Requirements: 2.1, 2.2, 2.3, 6.1, 6.3
+*/
+.asset-table-accessible th {
+    font-size: var(--table-header-font-size-accessible);
+    padding: 12px 14px;
+}
+
+.asset-table-accessible td {
+    font-size: var(--table-body-font-size-accessible);
+    padding: 11px 14px;
+}
+
+.asset-table-accessible .status-badge {
+    font-size: var(--table-badge-font-size-accessible);
+    padding: 5px 14px;
+}
+
+/* Ensure table remains responsive and doesn't overflow */
+.asset-table-accessible {
+    table-layout: auto;
+    min-width: 100%;
+}
+
+/* Fallback for browsers without CSS variable support */
+@supports not (--css: variables) {
+    .asset-table-accessible th {
+        font-size: 14px;
+        padding: 12px 14px;
+    }
+    
+    .asset-table-accessible td {
+        font-size: 14px;
+        padding: 11px 14px;
+    }
+    
+    .asset-table-accessible .status-badge {
+        font-size: 13px;
+        padding: 5px 14px;
+    }
+}
+
+/* ===================================
+   Watchlist Panel - Vision Group Red
+   =================================== */
+
+/* Keep .panel-title as it's used by Watchlist */
+.panel-title {
+    font-size: var(--section-title-font-size-accessible);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Flag Button - Vision Group Red */
+.flag-btn {
+    width: 100%;
+    padding: 12px var(--spacing-md);
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    border: none;
+    border-radius: var(--border-radius);
+    background-color: var(--color-dark-gray);
+    color: var(--color-white);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    margin-top: 5px;
+}
+
+.flag-btn:hover {
+    background-color: #000000;
+    box-shadow: none;
+    transform: none;
+}
+
+.flag-btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.flag-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.flag-btn:disabled:hover {
+    background-color: var(--color-dark-gray);
+    transform: none;
+    box-shadow: none;
+}
+
+.flag-btn.flagged {
+    background-color: var(--color-green);
+    animation: flagSuccess 0.5s ease;
+}
+
+@keyframes flagSuccess {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.icon-flag {
+    font-size: 16px;
+}
+
+/* ===================================
+   Accessibility Utilities
+   =================================== */
+
+/* Screen reader only content - visually hidden but accessible to assistive technology */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Global focus indicator styles for keyboard navigation */
+*:focus {
+    outline: 3px solid #FFD700;
+    outline-offset: 2px;
+}
+
+/* Focus visible for modern browsers - only show outline for keyboard navigation */
+*:focus:not(:focus-visible) {
+    outline: none;
+}
+
+*:focus-visible {
+    outline: 3px solid #FFD700;
+    outline-offset: 2px;
+}
+
+/* Enhanced focus for buttons and interactive elements */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid #FFD700;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.2);
+}
+
+/* ===================================
+   Watchlist Panel - Vision Group Red
+   =================================== */
+
+/* Watchlist Panel - Base Container */
+.watchlist-panel {
+    background-color: var(--color-brand-red);
+    color: var(--color-white);
+    padding: 20px 18px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    height: fit-content;
+    position: sticky;
+    top: var(--spacing-lg);
+}
+
+/* Clean State */
+.watchlist-clean-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+    gap: 15px;
+}
+
+.clean-state-icon {
+    font-size: 48px;
+    opacity: 0.6;
+}
+
+.clean-state-message {
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0.9;
+    line-height: 1.4;
+}
+
+/* Active Alert Card */
+.active-alert-card {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: var(--border-radius);
+    padding: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+}
+
+.alert-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.user-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: var(--color-white);
+}
+
+.alert-icon {
+    width: 32px;
+    height: 32px;
+    background-color: #D32F2F;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--color-white);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.alert-content {
+    text-align: left;
+}
+
+.card-holder-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 6px;
+    line-height: 1.2;
+}
+
+.card-details {
+    font-size: 13px;
+    opacity: 0.85;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.card-id {
+    font-weight: 600;
+}
+
+.alert-timestamp {
+    font-weight: 400;
+    font-style: italic;
+}
+
+/* Incident Feed */
+.incident-feed {
+    margin-top: 10px;
+}
+
+.feed-title {
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    opacity: 0.9;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.incident-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 240px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+/* Custom scrollbar for incident list */
+.incident-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.incident-list::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.incident-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+
+.incident-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.incident-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.incident-item:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.incident-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #D32F2F;
+    background-color: var(--color-white);
+    border-radius: 50%;
+}
+
+.incident-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.incident-description {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 3px;
+    line-height: 1.3;
+    word-wrap: break-word;
+}
+
+.incident-time {
+    font-size: 11px;
+    opacity: 0.75;
+    font-style: italic;
+}
+
+/* Watchlist Actions */
+.watchlist-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+    padding-top: 15px;
+    border-top: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.action-btn {
+    width: 100%;
+    padding: 13px 16px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.primary-action {
+    background-color: #D32F2F;
+    color: var(--color-white);
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.primary-action:hover {
+    background-color: #B71C1C;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.primary-action:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.secondary-action {
+    background-color: transparent;
+    color: var(--color-white);
+    border: 2px solid var(--color-white);
+}
+
+.secondary-action:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: var(--color-white);
+}
+
+.secondary-action:active {
+    transform: translateY(1px);
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.action-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.action-btn:disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* Watchlist Action Button Focus States - Enhanced for Accessibility */
+.action-btn:focus-visible {
+    outline: 3px solid #FFD700;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 5px rgba(255, 215, 0, 0.3);
+}
+
+.primary-action:focus-visible {
+    outline: 3px solid #FFD700;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 5px rgba(255, 215, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.secondary-action:focus-visible {
+    outline: 3px solid #FFD700;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 5px rgba(255, 215, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Incident List Keyboard Navigation Support */
+.incident-list:focus {
+    outline: 2px solid #FFD700;
+    outline-offset: 2px;
+}
+
+/* ===================================
+   Entry/Exit Toggle - Sliding Toggle Button
+   =================================== */
+
+/* Entry/Exit Toggle Section */
+.entry-exit-toggle-section {
+    background-color: var(--color-white);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--color-border-gray);
+    margin-bottom: 20px;
+}
+
+/* Slide Toggle Container */
+.slide-toggle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Slide Toggle Label */
+.slide-toggle-label {
+    position: relative;
+    display: inline-block;
+    width: 120px;
+    height: 50px;
+    cursor: pointer;
+}
+
+/* Hide the default checkbox */
+.slide-toggle-input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slide-toggle-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--color-red);
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Slider when checked (ENTRY - Professional Blue) */
+.slide-toggle-input:checked + .slide-toggle-slider {
+    background-color: #2C5F8D;
+}
+
+/* Toggle text */
+.slide-toggle-text {
+    color: var(--color-white);
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+/* Hover effects */
+.slide-toggle-label:hover .slide-toggle-slider {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transform: translateY(-1px);
+}
+
+/* Focus styles for accessibility */
+.slide-toggle-input:focus + .slide-toggle-slider {
+    outline: 3px solid var(--color-brand-red);
+    outline-offset: 2px;
+}
+
+/* ===================================
+   Guests Button Section
+   =================================== */
+
+/* Guests Button Section */
+.guests-button-section {
+    background-color: var(--color-white);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--color-border-gray);
+    margin-bottom: 20px;
+}
+
+/* Guests Button */
+.guests-btn {
+    width: 100%;
+    padding: 15px 20px;
+    background-color: var(--color-brand-red);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.guests-btn:hover {
+    background-color: var(--color-brand-red-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.guests-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.guests-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* Field Error Styles */
+.input-field.error {
+    border-color: var(--color-red);
+    background-color: #fef2f2;
+}
+
+.field-error {
+    color: var(--color-red);
+    font-size: 11px;
+    margin-top: 4px;
+    font-weight: 500;
+}
+
+.validation-errors {
+    background-color: #fef2f2;
+    border: 1px solid var(--color-red);
+    border-radius: var(--border-radius);
+    padding: 12px;
+    margin-bottom: 15px;
+}
+
+.error-message {
+    color: var(--color-red);
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.error-message:last-child {
+    margin-bottom: 0;
+}
+
+/* Process Button Success State */
+.process-btn.success {
+    background-color: var(--color-green);
+    border-color: var(--color-green);
+}
+
+/* ===================================
+   Guest Management Modal
+   =================================== */
+
+/* Modal Overlay */
+.guest-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: var(--z-modal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    backdrop-filter: blur(2px);
+}
+
+/* Modal Container */
+.guest-modal {
+    background-color: var(--color-white);
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Modal Header */
+.guest-modal-header {
+    background: linear-gradient(135deg, var(--color-brand-red), var(--color-brand-red-dark));
+    color: var(--color-white);
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.modal-title-section {
+    flex: 1;
+}
+
+.modal-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.modal-title-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.modal-subtitle {
+    font-size: 14px;
+    margin: 0;
+    opacity: 0.9;
+}
+
+.modal-close-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: var(--color-white);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+}
+
+.modal-close-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.close-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* Modal Content */
+.guest-modal-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0;
+}
+
+/* Modal Footer */
+.guest-modal-footer {
+    background-color: #f8f9fa;
+    padding: 20px 24px;
+    border-top: 1px solid var(--color-border-gray);
+}
+
+/* Guest Sections in Modal */
+.guest-modal .guest-section {
+    margin: 0;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid var(--color-border-gray);
+    box-shadow: none;
+}
+
+.guest-modal .guest-section:last-child {
+    border-bottom: none;
+}
+
+.guest-modal .section-header {
+    background-color: #f8f9fa;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--color-border-gray);
+}
+
+.guest-modal .section-title {
+    font-size: var(--section-title-font-size-accessible);
+    font-weight: 600;
+    color: var(--color-dark-gray);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+}
+
+.guest-modal .section-icon {
+    width: 20px;
+    height: 20px;
+    color: var(--color-brand-red);
+}
+
+.guest-modal .section-subtitle {
+    margin: 6px 0 0 30px;
+    font-size: 13px;
+    color: var(--color-medium-gray);
+}
+
+/* Modal Input Styles */
+.guest-modal .card-input-container,
+.guest-modal .device-input-container,
+.guest-modal .device-list-container,
+.guest-modal .action-toggle-container {
+    padding: 20px 24px;
+}
+
+.guest-modal .input-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-dark-gray);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.guest-modal .scanner-input {
+    padding: 12px 16px;
+    font-size: 14px;
+    border: 2px solid var(--color-border-gray);
+    border-radius: 6px;
+}
+
+.guest-modal .scanner-input:focus {
+    border-color: var(--color-brand-red);
+    box-shadow: 0 0 0 3px rgba(207, 46, 46, 0.1);
+}
+
+/* Modal Device Table */
+.guest-modal .device-table {
+    font-size: 14px;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 2px solid var(--color-dark-gray);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.guest-modal .device-table th {
+    padding: 16px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    background-color: var(--color-dark-gray);
+    color: var(--color-white);
+    border-bottom: 2px solid var(--color-medium-gray);
+    border-right: 1px solid var(--color-medium-gray);
+    text-align: center;
+}
+
+.guest-modal .device-table th:last-child {
+    border-right: none;
+}
+
+.guest-modal .device-table td {
+    padding: 16px 14px;
+    border-bottom: 1px solid var(--color-border-gray);
+    border-right: 1px solid var(--color-border-gray);
+    text-align: center;
+    background-color: var(--color-white);
+}
+
+.guest-modal .device-table td:last-child {
+    border-right: none;
+}
+
+.guest-modal .device-table tr:nth-child(even) td {
+    background-color: #f8f9fa;
+}
+
+.guest-modal .device-table tr:hover td {
+    background-color: #e3f2fd;
+}
+
+.guest-modal .device-tag-cell {
+    font-family: 'Courier New', monospace;
+    font-weight: 700;
+    color: var(--color-brand-red);
+    font-size: 15px;
+}
+
+.guest-modal .serial-input {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 2px solid var(--color-border-gray);
+    border-radius: 4px;
+    width: 100%;
+    min-width: 140px;
+}
+
+.guest-modal .serial-input:focus {
+    border-color: var(--color-brand-red);
+    box-shadow: 0 0 0 2px rgba(207, 46, 46, 0.2);
+}
+
+.guest-modal .scan-time-cell {
+    font-size: 14px;
+    color: var(--color-dark-gray);
+    min-width: 100px;
+}
+
+.guest-modal .time-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.guest-modal .time-icon {
+    width: 16px;
+    height: 16px;
+    color: var(--color-brand-red);
+}
+
+.guest-modal .time-text {
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.guest-modal .remove-device-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    min-width: 80px;
+}
+
+.guest-modal .remove-device-btn:hover {
+    background-color: #c82333;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal Action Buttons */
+.guest-modal .action-buttons {
+    gap: 16px;
+    display: flex;
+    justify-content: center;
+}
+
+.guest-modal .action-btn {
+    flex: 0 1 auto;
+    padding: 12px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 120px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Check-In Button - Green */
+.guest-modal .check-in-btn {
+    background-color: var(--color-white);
+    color: var(--color-green);
+    border-color: var(--color-green);
+}
+
+.guest-modal .check-in-btn:hover {
+    background-color: #f0fff4;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+}
+
+.guest-modal .check-in-btn.active {
+    background-color: var(--color-green);
+    color: var(--color-white);
+    border-color: var(--color-green);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+}
+
+/* Check-Out Button - Red */
+.guest-modal .check-out-btn {
+    background-color: var(--color-white);
+    color: var(--color-brand-red);
+    border-color: var(--color-brand-red);
+}
+
+.guest-modal .check-out-btn:hover {
+    background-color: #fef2f2;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(207, 46, 46, 0.3);
+}
+
+.guest-modal .check-out-btn.active {
+    background-color: var(--color-brand-red);
+    color: var(--color-white);
+    border-color: var(--color-brand-red);
+    box-shadow: 0 4px 12px rgba(207, 46, 46, 0.4);
+}
+
+.guest-modal .action-icon {
+    width: 18px;
+    height: 18px;
+}
+
+/* Modal Process Button */
+.guest-modal .process-guest-btn {
+    padding: 18px 32px;
+    font-size: 16px;
+    font-weight: 700;
+    background-color: var(--color-brand-red);
+    color: var(--color-white);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 12px rgba(207, 46, 46, 0.3);
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.guest-modal .process-guest-btn:hover {
+    background-color: var(--color-brand-red-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(207, 46, 46, 0.4);
+}
+
+.guest-modal .process-guest-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(207, 46, 46, 0.3);
+}
+
+.guest-modal .process-guest-btn:disabled {
+    background-color: var(--color-medium-gray);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.guest-modal .process-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* Modal Responsive Design */
+@media screen and (max-width: 768px) {
+    .guest-modal-overlay {
+        padding: 10px;
+    }
+    
+    .guest-modal {
+        max-height: 95vh;
+    }
+    
+    .guest-modal-header {
+        padding: 16px 20px;
+    }
+    
+    .modal-title {
+        font-size: 18px;
+    }
+    
+    .guest-modal .card-input-container,
+    .guest-modal .device-input-container,
+    .guest-modal .device-list-container,
+    .guest-modal .action-toggle-container {
+        padding: 16px 20px;
+    }
+    
+    .guest-modal-footer {
+        padding: 16px 20px;
+    }
+    
+    .guest-modal .action-buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .guest-modal .action-btn {
+        width: 100%;
+        min-width: auto;
+        padding: 14px 20px;
+    }
+    
+    .guest-modal .device-table-container {
+        overflow-x: auto;
+    }
+    
+    .guest-modal .device-table {
+        min-width: 600px;
+    }
+    
+    .guest-modal .device-table th,
+    .guest-modal .device-table td {
+        padding: 12px 10px;
+    }
+    
+    .guest-modal .process-guest-btn {
+        padding: 16px 24px;
+        font-size: 15px;
+        max-width: none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .guest-modal .action-btn {
+        padding: 12px 16px;
+        font-size: 12px;
+    }
+    
+    .guest-modal .device-table th,
+    .guest-modal .device-table td {
+        padding: 10px 8px;
+    }
+    
+    .guest-modal .serial-input {
+        min-width: 100px;
+        font-size: 13px;
+    }
+    
+    .guest-modal .process-guest-btn {
+        padding: 14px 20px;
+        font-size: 14px;
+    }
+}
+
+/* ===================================
+   Footer Component
+   =================================== */
+.footer {
+    background-color: var(--color-dark-gray);
+    color: var(--color-white);
+    padding: var(--spacing-md) var(--spacing-xl);
+    margin-top: var(--spacing-xl);
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1920px;
+    margin: 0 auto;
+    gap: var(--spacing-lg);
+}
+
+.footer-left,
+.footer-center,
+.footer-right {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.footer-left {
+    flex: 1;
+}
+
+.footer-center {
+    flex: 2;
+    justify-content: center;
+}
+
+.footer-right {
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.icon-clock {
+    font-size: 16px;
+}
+
+.footer-timestamp {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.copyright {
+    font-size: 12px;
+    text-align: center;
+    opacity: 0.9;
+}
+
+.security-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--color-green);
+    display: inline-block;
+}
+
+.security-text {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* ===================================
+   Responsive Design for Main Layout
+   =================================== */
+@media screen and (max-width: 1279px) {
+    .main-content {
+        padding: 25px 20px;
+    }
+
+    .content-wrapper {
+        grid-template-columns: 65% 35%;
+        gap: 20px;
+    }
+
+    .left-column {
+        gap: 20px;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       RESPONSIVE UTILITY CLASSES - TABLET BREAKPOINT (768px - 1279px)
+       ═══════════════════════════════════════════════════════════════════════
+       
+       Purpose: Adapt utility classes for tablet and smaller desktop screens
+       
+       Breakpoint: max-width: 1279px
+       Target Devices: Tablets, small laptops, portrait iPads
+       
+       Changes Applied:
+       
+       1. .input-grid-3col
+          - FROM: 3-column grid (repeat(3, 1fr))
+          - TO: Single-column grid (1fr)
+          
+          Rationale: Three columns become too narrow on tablet screens,
+          causing text truncation and poor readability. Single column
+          provides better usability and maintains visual hierarchy.
+          
+          Impact: All forms using .input-grid-3col will stack vertically,
+          maintaining consistent spacing and alignment.
+       
+       Visual Consistency Maintained:
+       - 15px gap between inputs (var(--form-grid-gap))
+       - 20px section padding (var(--section-padding))
+       - All input and label styling unchanged
+       - Button groups remain horizontal (centered)
+       
+       Requirements: 4.1, 4.3, 4.4
+       ═══════════════════════════════════════════════════════════════════════ */
+    .input-grid-3col {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .main-content {
+        padding: 20px 20px;
+    }
+
+    .content-wrapper {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .left-column {
+        gap: 20px;
+    }
+
+    .right-column {
+        order: -1;
+    }
+    
+    .watchlist-panel {
+        position: static;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .main-content {
+        padding: 15px 15px;
+    }
+
+    .content-wrapper {
+        gap: 15px;
+    }
+
+    .left-column {
+        gap: 15px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-sm);
+    }
+
+    .footer-left,
+    .footer-center,
+    .footer-right {
+        flex: none;
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       RESPONSIVE UTILITY CLASSES - MOBILE BREAKPOINT (<768px)
+       ═══════════════════════════════════════════════════════════════════════
+       
+       Purpose: Adapt utility classes for mobile phones and small screens
+       
+       Breakpoint: max-width: 767px
+       Target Devices: Mobile phones, small tablets in portrait mode
+       
+       Changes Applied:
+       
+       1. .button-group-centered
+          - FROM: Horizontal flex layout (flex-direction: row)
+          - TO: Vertical flex layout (flex-direction: column)
+          
+          Rationale: Horizontal button groups are difficult to use on small
+          screens due to limited width. Vertical stacking provides better
+          touch targets and prevents text truncation.
+          
+          Impact: Toggle buttons and button groups will stack vertically,
+          maintaining centered alignment and consistent spacing.
+       
+       2. .button-group-centered > * (all child elements)
+          - FROM: Auto width based on content
+          - TO: Full width (width: 100%)
+          
+          Rationale: Full-width buttons provide larger touch targets,
+          meeting accessibility guidelines (minimum 44x44px) and improving
+          usability on touch devices.
+          
+          Impact: All buttons within .button-group-centered will expand
+          to full width, making them easier to tap on mobile devices.
+       
+       Visual Consistency Maintained:
+       - 15px gap between buttons (var(--element-gap))
+       - 20px section padding (var(--section-padding))
+       - All button styling unchanged (padding, typography, colors)
+       - Centered alignment preserved
+       - Input grids remain single-column (inherited from tablet breakpoint)
+       
+       Accessibility Improvements:
+       - Touch targets meet WCAG 2.1 Level AAA (44x44px minimum)
+       - Reduced risk of mis-taps on adjacent buttons
+       - Better readability with full-width button text
+       - Improved keyboard navigation on mobile devices
+       
+       Requirements: 4.2, 4.3, 4.4, 4.5
+       ═══════════════════════════════════════════════════════════════════════ */
+    .button-group-centered {
+        flex-direction: column;
+    }
+
+    .button-group-centered > * {
+        width: 100%;
+    }
+}
+
+
+/* ===================================
+   Auto-Refresh Indicator
+   =================================== */
+.refresh-indicator {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 6px 12px;
+    border-radius: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1000;
+}
+
+.refresh-indicator.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.refresh-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-green);
+    border-radius: 50%;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.refresh-text {
+    font-size: 12px;
+    color: var(--color-white);
+    font-weight: 500;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.5;
+        transform: scale(1.2);
+    }
+}
+
+/* Make header position relative for absolute positioning of indicator */
+.header {
+    position: relative;
+}
+
+/* ===================================
+   Guest Modal Accessibility Enhancements
+   Enhanced typography for improved readability
+   =================================== */
+
+/* Apply enhanced font sizes to guest modal when accessibility class is added
+   Usage: Add .guest-modal-accessible class to .guest-modal element
+   Requirements: 4.1, 4.2, 4.3, 4.4, 4.5, 6.1, 6.2, 6.3 */
+
+.guest-modal-accessible .input-label,
+.guest-modal-accessible label {
+    font-size: var(--guest-modal-label-size) !important;
+}
+
+.guest-modal-accessible .scanner-input,
+.guest-modal-accessible input[type="text"],
+.guest-modal-accessible input {
+    font-size: var(--guest-modal-input-size) !important;
+    padding: 18px 20px !important;
+}
+
+.guest-modal-accessible .action-btn,
+.guest-modal-accessible .process-guest-btn,
+.guest-modal-accessible button {
+    font-size: var(--guest-modal-button-size) !important;
+    padding: 20px 24px !important;
+}
+
+.guest-modal-accessible .device-table,
+.guest-modal-accessible .device-table th,
+.guest-modal-accessible .device-table td {
+    font-size: var(--guest-modal-table-size) !important;
+}
+
+.guest-modal-accessible .modal-title,
+.guest-modal-accessible .section-title,
+.guest-modal-accessible h2,
+.guest-modal-accessible h3 {
+    font-size: var(--guest-modal-title-size) !important;
+}
+
+/* Adjust spacing proportionally for larger text */
+.guest-modal-accessible .section-header {
+    padding: 24px 28px !important;
+}
+
+.guest-modal-accessible .card-input-container,
+.guest-modal-accessible .device-input-container,
+.guest-modal-accessible .action-toggle-container {
+    padding: 28px !important;
+}
+
+.guest-modal-accessible .device-list-container {
+    padding: 0 28px 28px 28px !important;
+}
+
+.guest-modal-accessible .guest-modal-footer {
+    padding: 28px !important;
+}
+
+/* Adjust input group spacing */
+.guest-modal-accessible .input-group {
+    margin-bottom: 24px !important;
+}
+
+/* Adjust device table cell padding */
+.guest-modal-accessible .device-table th {
+    padding: 14px 18px !important;
+}
+
+.guest-modal-accessible .device-table td {
+    padding: 18px !important;
+}
+
+/* Adjust action button spacing */
+.guest-modal-accessible .action-buttons {
+    gap: 20px !important;
+    margin-bottom: 24px !important;
+}
+
+/* Adjust icon sizes proportionally */
+.guest-modal-accessible .section-icon {
+    width: 28px !important;
+    height: 28px !important;
+}
+
+.guest-modal-accessible .action-icon {
+    width: 24px !important;
+    height: 24px !important;
+}
+
+.guest-modal-accessible .process-icon {
+    width: 28px !important;
+    height: 28px !important;
+}
+
+/* Adjust scanner indicator */
+.guest-modal-accessible .scanner-indicator {
+    font-size: 16px !important;
+    margin-top: 10px !important;
+}
+
+.guest-modal-accessible .scanner-icon {
+    width: 20px !important;
+    height: 20px !important;
+}
+
+/* Adjust confirmation and status messages */
+.guest-modal-accessible .confirmation-message,
+.guest-modal-accessible .success-message {
+    font-size: 18px !important;
+    padding: 16px 20px !important;
+}
+
+.guest-modal-accessible .confirm-icon,
+.guest-modal-accessible .success-icon {
+    width: 24px !important;
+    height: 24px !important;
+}
+
+/* Adjust device count badge */
+.guest-modal-accessible .device-count {
+    font-size: 16px !important;
+    padding: 6px 14px !important;
+}
+
+/* Adjust empty state */
+.guest-modal-accessible .empty-state p {
+    font-size: 18px !important;
+}
+
+.guest-modal-accessible .empty-subtitle {
+    font-size: 16px !important;
+}
+
+/* Adjust action status */
+.guest-modal-accessible .action-status .status-text {
+    font-size: 18px !important;
+}
+
+/* Adjust modal subtitle */
+.guest-modal-accessible .modal-subtitle,
+.guest-modal-accessible .section-subtitle {
+    font-size: 16px !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE FONT SIZE ADJUSTMENTS FOR ACCESSIBILITY
+   Tablet and Mobile breakpoints for enhanced typography
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ───────────────────────────────────────────────────────────────────────────
+   TABLET BREAKPOINT (768px - 1279px)
+   Maintain enhanced font sizes at tablet breakpoint
+   ─────────────────────────────────────────────────────────────────────────── */
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+    /* Form Section Accessibility - Tablet */
+    .form-section-accessible {
+        padding: var(--accessibility-section-padding);
+    }
+    
+    .form-section-accessible .label-standard {
+        font-size: var(--accessibility-label-font-size); /* Maintain 22px */
+    }
+    
+    .form-section-accessible .input-standard {
+        font-size: var(--accessibility-input-font-size); /* Maintain 28px */
+        padding: var(--accessibility-input-padding-vertical) var(--accessibility-input-padding-horizontal);
+    }
+    
+    .form-section-accessible .input-standard::placeholder {
+        font-size: var(--accessibility-placeholder-font-size); /* Maintain 22px */
+    }
+    
+    .form-section-accessible .action-button-full {
+        font-size: var(--accessibility-button-font-size); /* Maintain 20px */
+        padding: var(--accessibility-button-padding-vertical) var(--button-padding-horizontal);
+    }
+    
+    /* Guest Modal Accessibility - Tablet */
+    .guest-modal-accessible .input-label {
+        font-size: var(--guest-modal-label-size); /* Maintain 20px */
+    }
+    
+    .guest-modal-accessible .scanner-input {
+        font-size: var(--guest-modal-input-size); /* Maintain 24px */
+    }
+    
+    .guest-modal-accessible .action-btn {
+        font-size: var(--guest-modal-button-size); /* Maintain 20px */
+    }
+    
+    .guest-modal-accessible .device-table {
+        font-size: var(--guest-modal-table-size); /* Maintain 15px */
+    }
+    
+    .guest-modal-accessible .section-title {
+        font-size: var(--guest-modal-title-size); /* Maintain 22px */
+    }
+    
+    /* Table Accessibility - Tablet */
+    .asset-table-accessible th {
+        font-size: var(--table-header-font-size-accessible); /* Maintain 14px */
+    }
+    
+    .asset-table-accessible td {
+        font-size: var(--table-body-font-size-accessible); /* Maintain 14px */
+    }
+    
+    .asset-table-accessible .status-badge {
+        font-size: var(--table-badge-font-size-accessible); /* Maintain 13px */
+    }
+    
+    /* Ensure single-column layout works with larger text */
+    .form-section-accessible .input-grid-3col {
+        grid-template-columns: 1fr; /* Single column on tablet */
+        gap: var(--accessibility-element-gap);
+    }
+    
+    /* Ensure no horizontal scrolling */
+    .form-section-accessible,
+    .guest-modal-accessible,
+    .asset-table-accessible {
+        overflow-x: hidden;
+    }
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   MOBILE BREAKPOINT (<768px)
+   Reduce enhanced font sizes by 10% for mobile
+   ─────────────────────────────────────────────────────────────────────────── */
+
+@media screen and (max-width: 767px) {
+    /* Form Section Accessibility - Mobile */
+    .form-section-accessible {
+        padding: 20px; /* Slightly reduced from 30px */
+    }
+    
+    .form-section-accessible .label-standard {
+        font-size: 20px; /* Reduced from 22px (10% reduction) */
+    }
+    
+    .form-section-accessible .input-standard {
+        font-size: 24px; /* Reduced from 28px (14% reduction for better fit) */
+        padding: 16px 18px; /* Slightly reduced padding */
+        min-height: 44px; /* Ensure touch target minimum */
+    }
+    
+    .form-section-accessible .input-standard::placeholder {
+        font-size: 20px; /* Reduced from 22px (10% reduction) */
+    }
+    
+    .form-section-accessible .action-button-full {
+        font-size: 18px; /* Reduced from 20px (10% reduction) */
+        padding: 18px 30px; /* Maintain adequate padding */
+        min-height: 44px; /* Ensure touch target minimum */
+    }
+    
+    .form-section-accessible .input-grid-3col {
+        grid-template-columns: 1fr; /* Single column on mobile */
+        gap: 20px; /* Slightly reduced gap */
+    }
+    
+    /* Guest Modal Accessibility - Mobile */
+    .guest-modal-accessible .input-label {
+        font-size: 18px; /* Reduced from 20px (10% reduction) */
+    }
+    
+    .guest-modal-accessible .scanner-input {
+        font-size: 22px; /* Reduced from 24px (8% reduction) */
+        padding: 14px 16px;
+        min-height: 44px; /* Ensure touch target minimum */
+    }
+    
+    .guest-modal-accessible .action-btn {
+        font-size: 18px; /* Reduced from 20px (10% reduction) */
+        padding: 14px 20px;
+        min-height: 44px; /* Ensure touch target minimum */
+    }
+    
+    .guest-modal-accessible .device-table {
+        font-size: 14px; /* Reduced from 15px (7% reduction) */
+    }
+    
+    .guest-modal-accessible .section-title {
+        font-size: 20px; /* Reduced from 22px (10% reduction) */
+    }
+    
+    /* Table Accessibility - Mobile */
+    .asset-table-accessible th {
+        font-size: 13px; /* Reduced from 14px (7% reduction) */
+        padding: 10px 12px;
+    }
+    
+    .asset-table-accessible td {
+        font-size: 13px; /* Reduced from 14px (7% reduction) */
+        padding: 10px 12px;
+    }
+    
+    .asset-table-accessible .status-badge {
+        font-size: 12px; /* Reduced from 13px (8% reduction) */
+        padding: 4px 10px;
+    }
+    
+    /* Ensure minimum readable sizes are maintained */
+    .form-section-accessible .input-group {
+        gap: 6px;
+    }
+    
+    /* Verify touch targets remain at least 44x44px */
+    .form-section-accessible button,
+    .form-section-accessible input,
+    .form-section-accessible select {
+        min-height: 44px;
+    }
+    
+    .guest-modal-accessible button,
+    .guest-modal-accessible input,
+    .guest-modal-accessible select {
+        min-height: 44px;
+    }
+    
+    /* Test on small screens (375px, 320px width) */
+    .form-section-accessible,
+    .guest-modal-accessible {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   EXTRA SMALL MOBILE (320px - 374px)
+   Additional adjustments for very small screens
+   ─────────────────────────────────────────────────────────────────────────── */
+
+@media screen and (max-width: 374px) {
+    /* Further optimize for very small screens */
+    .form-section-accessible {
+        padding: 15px;
+    }
+    
+    .form-section-accessible .label-standard {
+        font-size: 18px; /* Further reduced for small screens */
+    }
+    
+    .form-section-accessible .input-standard {
+        font-size: 22px; /* Further reduced for small screens */
+        padding: 14px 16px;
+    }
+    
+    .form-section-accessible .input-standard::placeholder {
+        font-size: 18px;
+    }
+    
+    .form-section-accessible .action-button-full {
+        font-size: 16px;
+        padding: 16px 24px;
+    }
+    
+    .guest-modal-accessible .input-label {
+        font-size: 16px;
+    }
+    
+    .guest-modal-accessible .scanner-input {
+        font-size: 20px;
+        padding: 12px 14px;
+    }
+    
+    .guest-modal-accessible .action-btn {
+        font-size: 16px;
+        padding: 12px 16px;
+    }
+    
+    .guest-modal-accessible .section-title {
+        font-size: 18px;
+    }
+    
+    /* Ensure all touch targets still meet 44x44px minimum */
+    .form-section-accessible button,
+    .form-section-accessible input,
+    .guest-modal-accessible button,
+    .guest-modal-accessible input {
+        min-height: 44px;
+    }
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   SMOOTH VIEWPORT TRANSITIONS
+   Ensure smooth transitions between breakpoints
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* Apply smooth transitions to font size changes */
+.form-section-accessible .label-standard,
+.form-section-accessible .input-standard,
+.form-section-accessible .action-button-full,
+.guest-modal-accessible .input-label,
+.guest-modal-accessible .scanner-input,
+.guest-modal-accessible .action-btn,
+.guest-modal-accessible .section-title,
+.asset-table-accessible th,
+.asset-table-accessible td,
+.asset-table-accessible .status-badge {
+    transition: font-size 0.2s ease, padding 0.2s ease;
+}
+
+/* Prevent layout jumping during transitions */
+.form-section-accessible,
+.guest-modal-accessible,
+.asset-table-accessible {
+    transition: padding 0.2s ease;
+}
+
+/* Ensure no content shifting during resize */
+.form-section-accessible .input-grid-3col {
+    transition: grid-template-columns 0.2s ease, gap 0.2s ease;
+}
+
+/* Fallback for browsers without CSS variable support */
+@supports not (--css: variables) {
+    @media screen and (max-width: 767px) {
+        .form-section-accessible .label-standard {
+            font-size: 20px;
+        }
+        
+        .form-section-accessible .input-standard {
+            font-size: 24px;
+            padding: 16px 18px;
+        }
+        
+        .form-section-accessible .action-button-full {
+            font-size: 18px;
+            padding: 18px 30px;
+        }
+    }
+}
+
+/* ===================================
+   KEYBOARD NAVIGATION & FOCUS STYLES
+   Accessibility Enhancement for Enhanced Font Sizes
+   =================================== */
+
+/*
+   Focus Indicator System
+   
+   Purpose: Provide clear, visible focus indicators for keyboard navigation
+   that work well with enhanced font sizes (22px labels, 28px inputs, 20px buttons)
+   
+   Requirements: 7.2 - All interactive elements must remain keyboard accessible
+   
+   Design Principles:
+   - High contrast focus outlines (minimum 3:1 ratio)
+   - Sufficient thickness for visibility on larger text
+   - Consistent styling across all interactive elements
+   - No clipping or hiding of focus indicators
+*/
+
+/* Base focus style for all interactive elements */
+*:focus {
+    outline: 3px solid #2196F3;
+    outline-offset: 2px;
+}
+
+/* Enhanced focus for form inputs with larger font sizes */
+.input-standard:focus,
+.scanner-input:focus {
+    outline: 3px solid #2196F3;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(33, 150, 243, 0.1);
+}
+
+/* Focus style for buttons with enhanced text */
+.process-btn:focus,
+.action-button-full:focus,
+.control-btn:focus,
+.action-btn:focus,
+.process-guest-btn:focus {
+    outline: 3px solid #2196F3;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 5px rgba(33, 150, 243, 0.15);
+}
+
+/* Focus style for dropdowns and selects */
+.filter-dropdown:focus {
+    outline: 3px solid #2196F3;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(33, 150, 243, 0.1);
+}
+
+/* Focus style for icon buttons (search, close, etc.) */
+.search-icon-btn:focus,
+.modal-close-btn:focus {
+    outline: 3px solid #2196F3;
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Focus style for toggle switches */
+.slide-toggle-input:focus + .slide-toggle-slider {
+    outline: 3px solid #2196F3;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 5px rgba(33, 150, 243, 0.15);
+}
+
+/* Focus style for guest modal action buttons */
+.check-in-btn:focus,
+.check-out-btn:focus {
+    outline: 3px solid #2196F3;
+    outline-offset: 2px;
+}
+
+/* Focus style for watchlist buttons */
+.guests-btn:focus,
+.primary-action:focus,
+.secondary-action:focus {
+    outline: 3px solid #2196F3;
+    outline-offset: 3px;
+}
+
+/* Ensure focus indicators are visible on enhanced elements */
+.form-section-accessible .input-standard:focus {
+    outline: 3px solid #2196F3;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 5px rgba(33, 150, 243, 0.12);
+}
+
+.form-section-accessible .process-btn:focus {
+    outline: 3px solid #2196F3;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 6px rgba(33, 150, 243, 0.15);
+}
+
+/* Guest modal enhanced focus indicators */
+.guest-modal-accessible .scanner-input:focus {
+    outline: 3px solid #2196F3;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 5px rgba(33, 150, 243, 0.12);
+}
+
+.guest-modal-accessible .action-btn:focus {
+    outline: 3px solid #2196F3;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 5px rgba(33, 150, 243, 0.15);
+}
+
+.guest-modal-accessible .process-guest-btn:focus {
+    outline: 3px solid #2196F3;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 6px rgba(33, 150, 243, 0.15);
+}
+
+/* Table controls focus indicators */
+.asset-table-accessible + .table-controls .control-btn:focus,
+.table-controls .filter-dropdown:focus {
+    outline: 3px solid #2196F3;
+    outline-offset: 2px;
+}
+
+/* Focus-visible for modern browsers (only show on keyboard focus) */
+*:focus:not(:focus-visible) {
+    outline: none;
+    box-shadow: none;
+}
+
+*:focus-visible {
+    outline: 3px solid #2196F3;
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    *:focus,
+    *:focus-visible {
+        outline: 4px solid currentColor;
+        outline-offset: 3px;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    *:focus,
+    *:focus-visible {
+        transition: none;
+    }
+}
+
+/* Skip to content link for keyboard users */
+.skip-to-content {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--color-brand-red);
+    color: var(--color-white);
+    padding: 8px 16px;
+    text-decoration: none;
+    z-index: 10000;
+    border-radius: 0 0 4px 0;
+}
+
+.skip-to-content:focus {
+    top: 0;
+    outline: 3px solid #2196F3;
+    outline-offset: 2px;
+}
