@@ -22,21 +22,21 @@
        PRIMARY BRAND COLORS
        Vision Group Uganda Corporate Identity
        ═══════════════════════════════════════════════════════════════════════ */
-    
+
     /* --color-brand-red: Vision Group primary brand color
        Usage: Primary action buttons, active states, brand accents
        Requirements: 5.2, 5.3 */
     --color-brand-red: #CF2E2E;
-    
+
     /* --color-brand-red-dark: Darker shade for hover states
        Usage: Button hover states, interactive element emphasis
        Requirements: 5.2 */
     --color-brand-red-dark: #B02626;
-    
+
     /* --color-white: Pure white for backgrounds and text
        Usage: Form backgrounds, button text, clean surfaces */
     --color-white: #FFFFFF;
-    
+
     /* --color-dark-gray: Primary text color
        Usage: Body text, headings, labels
        Requirements: 3.1, 3.2 */
@@ -46,19 +46,19 @@
        STATUS COLORS
        Used for transaction states and visual feedback
        ═══════════════════════════════════════════════════════════════════════ */
-    
+
     /* --color-green: Success and authorized states
        Usage: Check-in status, authorized badges, success messages */
     --color-green: #28A745;
-    
+
     /* --color-red: Error and unauthorized states
        Usage: Validation errors, unauthorized badges, alerts */
     --color-red: #CF2E2E;
-    
+
     /* --color-orange: Warning and check-out states
        Usage: Check-out status, pending states, warnings */
     --color-orange: #FFA500;
-    
+
     /* --color-blue: Information states (currently uses brand red)
        Usage: Informational messages, neutral highlights */
     --color-blue: #CF2E2E;
@@ -67,21 +67,21 @@
        NEUTRAL COLORS
        Foundation colors for UI elements
        ═══════════════════════════════════════════════════════════════════════ */
-    
+
     /* --color-light-gray: Subtle backgrounds and hover states
        Usage: Table row alternation, inactive button hover, section backgrounds
        Requirements: 5.4 */
     --color-light-gray: #F5F5F5;
-    
+
     /* --color-medium-gray: Secondary text and inactive states
        Usage: Placeholder text, disabled states, secondary information */
     --color-medium-gray: #6C757D;
-    
+
     /* --color-text-gray: Primary text color (same as dark-gray)
        Usage: All body text, form labels, table content
        Requirements: 3.1, 3.2 */
     --color-text-gray: #1A1A1A;
-    
+
     /* --color-border-gray: Borders and dividers
        Usage: Input borders, table borders, section dividers
        Requirements: 5.1 */
@@ -91,7 +91,7 @@
        TYPOGRAPHY
        Professional sans-serif font stack
        ═══════════════════════════════════════════════════════════════════════ */
-    
+
     /* --font-family: System font stack for optimal rendering
        Usage: All text elements throughout the application
        Fallback order: Helvetica Neue → Helvetica → Arial → system sans-serif */
@@ -101,23 +101,23 @@
        GENERAL SPACING
        Base spacing scale for margins, padding, and gaps
        ═══════════════════════════════════════════════════════════════════════ */
-    
+
     /* --spacing-xs: Extra small spacing (5px)
        Usage: Icon gaps, tight spacing between related elements */
     --spacing-xs: 5px;
-    
+
     /* --spacing-sm: Small spacing (10px)
        Usage: Compact layouts, button groups, small gaps */
     --spacing-sm: 10px;
-    
+
     /* --spacing-md: Medium spacing (15px)
        Usage: Standard element gaps, form field spacing */
     --spacing-md: 15px;
-    
+
     /* --spacing-lg: Large spacing (20px)
        Usage: Section padding, major element separation */
     --spacing-lg: 20px;
-    
+
     /* --spacing-xl: Extra large spacing (30px)
        Usage: Page margins, major section separation */
     --spacing-xl: 30px;
@@ -126,16 +126,18 @@
        VISUAL EFFECTS
        Border radius and transitions for consistent UI feel
        ═══════════════════════════════════════════════════════════════════════ */
-    
-    /* --border-radius: Minimal border radius for professional appearance
+
+    /* --border-radius: Modern border radius for professional appearance
        Usage: All buttons, inputs, cards, and containers
        Requirements: 2.5 */
-    --border-radius: 4px;
+    --border-radius: 8px;
+    --border-radius-sm: 6px;
+    --border-radius-lg: 12px;
 
     /* --transition-fast: Quick transitions for immediate feedback
        Usage: Hover states, focus states, color changes */
     --transition-fast: 0.2s ease;
-    
+
     /* --transition-normal: Standard transitions for smooth animations
        Usage: Button interactions, panel expansions, layout changes */
     --transition-normal: 0.3s ease;
@@ -144,13 +146,13 @@
        Z-INDEX LAYERS
        Stacking order for overlapping elements
        ═══════════════════════════════════════════════════════════════════════ */
-    
+
     /* --z-header: Header component layer */
     --z-header: 100;
-    
+
     /* --z-modal: Modal dialogs and overlays */
     --z-modal: 1000;
-    
+
     /* --z-tooltip: Tooltips and popovers (highest layer) */
     --z-tooltip: 2000;
 
@@ -159,19 +161,19 @@
        Standardized values for consistent form and section alignment
        Reference: Check-in/Check-out section
        ═══════════════════════════════════════════════════════════════════════ */
-    
+
     /* --section-padding: Standard padding for all form sections
        Usage: Apply to .form-section containers
        Value: 20px (consistent across all form containers)
        Requirements: 1.5, 2.1 */
     --section-padding: 20px;
-    
+
     /* --element-gap: Standard gap between major UI elements
        Usage: Button groups, form sections, grid gaps
        Value: 15px (maintains visual rhythm)
        Requirements: 1.2, 2.4 */
     --element-gap: 15px;
-    
+
     /* --input-gap: Gap between input fields in grids
        Usage: Grid layouts, form field spacing
        Value: 15px (same as element-gap for consistency)
@@ -182,19 +184,19 @@
        UI ALIGNMENT SYSTEM - INPUT FIELD DIMENSIONS
        Standardized sizing for all text input fields
        ═══════════════════════════════════════════════════════════════════════ */
-    
+
     /* --input-padding-vertical: Vertical padding for input fields
        Usage: All text inputs, textareas, select elements
        Value: 11px (provides comfortable touch targets)
        Requirements: 2.1 */
     --input-padding-vertical: 11px;
-    
+
     /* --input-padding-horizontal: Horizontal padding for input fields
        Usage: All text inputs, textareas, select elements
        Value: 14px (balances text spacing)
        Requirements: 2.1 */
     --input-padding-horizontal: 14px;
-    
+
     /* --input-font-size: Font size for input field text
        Usage: All input field content
        Value: 13px (optimal readability)
@@ -205,25 +207,25 @@
        UI ALIGNMENT SYSTEM - BUTTON DIMENSIONS
        Standardized sizing for all button elements
        ═══════════════════════════════════════════════════════════════════════ */
-    
+
     /* --button-padding-vertical-sm: Small button vertical padding
        Usage: Toggle buttons, compact action buttons
        Value: 11px (matches input field padding)
        Requirements: 2.2 */
     --button-padding-vertical-sm: 11px;
-    
+
     /* --button-padding-vertical-md: Medium button vertical padding
        Usage: Primary action buttons, full-width buttons
        Value: 13px (slightly larger for prominence)
        Requirements: 2.3 */
     --button-padding-vertical-md: 13px;
-    
+
     /* --button-padding-horizontal: Horizontal padding for all buttons
        Usage: All button types
        Value: 30px (provides substantial click area)
        Requirements: 2.2, 2.3 */
     --button-padding-horizontal: 30px;
-    
+
     /* --button-font-size: Font size for button text
        Usage: All buttons
        Value: 12px (clear and readable)
@@ -234,37 +236,37 @@
        UI ALIGNMENT SYSTEM - TYPOGRAPHY
        Standardized text styling for labels, placeholders, and buttons
        ═══════════════════════════════════════════════════════════════════════ */
-    
+
     /* --label-font-size: Font size for form labels
        Usage: All form field labels
        Value: 11px (compact but readable)
        Requirements: 3.1 */
     --label-font-size: 11px;
-    
+
     /* --label-font-weight: Font weight for form labels
        Usage: All form field labels
        Value: 600 (semi-bold for emphasis)
        Requirements: 3.1 */
     --label-font-weight: 600;
-    
+
     /* --label-letter-spacing: Letter spacing for form labels
        Usage: All form field labels
        Value: 0.5px (improves uppercase readability)
        Requirements: 3.2 */
     --label-letter-spacing: 0.5px;
-    
+
     /* --placeholder-font-size: Font size for input placeholders
        Usage: All input field placeholders
        Value: 11px (matches label size)
        Requirements: 3.3 */
     --placeholder-font-size: 11px;
-    
+
     /* --placeholder-opacity: Opacity for placeholder text
        Usage: All input field placeholders
        Value: 0.6 (subtle but visible)
        Requirements: 3.3 */
     --placeholder-opacity: 0.6;
-    
+
     /* --button-letter-spacing: Letter spacing for button text
        Usage: All buttons
        Value: 1px (improves uppercase readability)
@@ -275,14 +277,14 @@
        UI ALIGNMENT SYSTEM - GRID CONFIGURATION
        Standardized grid layout for form input fields
        ═══════════════════════════════════════════════════════════════════════ */
-    
+
     /* --form-grid-columns: Column configuration for input grids
        Usage: .input-grid-3col utility class
        Value: repeat(3, 1fr) - three equal columns
        Responsive: Converts to 1fr (single column) at tablet breakpoint
        Requirements: 1.2, 4.1 */
     --form-grid-columns: repeat(3, 1fr);
-    
+
     /* --form-grid-gap: Gap between grid items
        Usage: .input-grid-3col utility class
        Value: 15px (consistent with element-gap)
@@ -711,9 +713,9 @@ html {
 .form-section {
     background-color: var(--color-white);
     padding: 28px;
-    border-radius: var(--border-radius);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-    border: 1px solid var(--color-border-gray);
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.06);
+    border: 1px solid #E8E8E8;
 }
 
 /* 
@@ -849,7 +851,7 @@ html {
     border-radius: var(--border-radius);
     background-color: var(--color-white);
     color: var(--color-text-gray);
-    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
     line-height: 1.5;
     min-height: 48px;
     box-sizing: border-box;
@@ -859,13 +861,13 @@ html {
 .input-standard:focus {
     outline: none;
     border-color: var(--color-brand-red);
-    box-shadow: 0 0 0 3px rgba(207, 46, 46, 0.15);
-    background-color: var(--color-white);
+    box-shadow: 0 0 0 3px rgba(207, 46, 46, 0.12);
+    background-color: #FAFAFA;
 }
 
 .input-standard::placeholder {
-    color: var(--color-medium-gray);
-    opacity: var(--placeholder-opacity);
+    color: #999999;
+    opacity: 1;
     text-transform: uppercase;
     font-size: var(--placeholder-font-size);
     font-weight: 400;
@@ -957,16 +959,16 @@ html {
     .form-section-accessible {
         padding: 30px;
     }
-    
+
     .form-section-accessible label {
         font-size: 22px;
     }
-    
+
     .form-section-accessible input {
         font-size: 28px;
         padding: 18px 20px;
     }
-    
+
     .form-section-accessible button {
         font-size: 20px;
         padding: 20px 30px;
@@ -1276,7 +1278,7 @@ html {
 
 /* Unified Header Bar - Single horizontal bar */
 .header-top {
-    padding: 20px 30px;
+    padding: 14px 30px;
     background-color: #ffffff;
     border-bottom: 1px solid #e0e0e0;
 }
@@ -1403,21 +1405,21 @@ html {
 }
 
 .main-title {
-    font-size: 36px;
+    font-size: 28px;
     font-weight: 700;
-    margin: 0 0 8px 0;
-    letter-spacing: 8px;
+    margin: 0 0 6px 0;
+    letter-spacing: 6px;
     color: #1a1a1a;
     text-transform: uppercase;
-    line-height: 1.2;
+    line-height: 1.1;
     font-family: 'Inter', 'Roboto', var(--font-family);
 }
 
 .subtitle {
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 500;
     color: #666666;
-    letter-spacing: 1px;
+    letter-spacing: 0.8px;
     margin: 0;
 }
 
@@ -1471,13 +1473,13 @@ html {
 /* Slim Red Stat Cards - Matching Reference Design */
 .header-stats {
     background-color: #CF2E2E;
-    padding: 16px 30px;
+    padding: 14px 30px;
     transition: background-color 0.4s ease;
 }
 
-/* Entry Mode - Professional Blue Theme */
+/* Entry Mode - Professional Green Theme */
 body.entry-mode .header-stats {
-    background-color: #2C5F8D;
+    background-color: #059669;
 }
 
 body.entry-mode .stat-card {
@@ -1485,28 +1487,28 @@ body.entry-mode .stat-card {
 }
 
 body.entry-mode .guests-btn {
-    background-color: #2C5F8D;
+    background-color: #059669;
 }
 
 body.entry-mode .guests-btn:hover {
-    background-color: #234A6F;
+    background-color: #047857;
 }
 
 body.entry-mode .watchlist-panel {
-    background-color: #2C5F8D;
+    background-color: #059669;
 }
 
 body.entry-mode .process-btn {
-    background-color: #2C5F8D;
+    background-color: #059669;
 }
 
 body.entry-mode .process-btn:hover {
-    background-color: #234A6F;
+    background-color: #047857;
 }
 
-/* Exit Mode - Red Theme (default) */
+/* Exit Mode - Modern Red Theme (default) */
 body.exit-mode .header-stats {
-    background-color: #CF2E2E;
+    background-color: #EF4444;
 }
 
 body.exit-mode .stat-card {
@@ -1514,23 +1516,23 @@ body.exit-mode .stat-card {
 }
 
 body.exit-mode .guests-btn {
-    background-color: #CF2E2E;
+    background-color: #EF4444;
 }
 
 body.exit-mode .guests-btn:hover {
-    background-color: var(--color-brand-red-dark);
+    background-color: #DC2626;
 }
 
 body.exit-mode .watchlist-panel {
-    background-color: #CF2E2E;
+    background-color: #EF4444;
 }
 
 body.exit-mode .process-btn {
-    background-color: #CF2E2E;
+    background-color: #EF4444;
 }
 
 body.exit-mode .process-btn:hover {
-    background-color: var(--color-brand-red-dark);
+    background-color: #DC2626;
 }
 
 .stats-container {
@@ -1547,9 +1549,11 @@ body.exit-mode .process-btn:hover {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 32px;
-    border-radius: 8px;
-    background-color: rgba(0, 0, 0, 0.25);
+    padding: 18px 28px;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     transition: transform 0.2s ease, background-color 0.2s ease;
     position: relative;
     overflow: hidden;
@@ -1559,7 +1563,8 @@ body.exit-mode .process-btn:hover {
 
 .stat-card:hover {
     transform: translateY(-2px);
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.25);
 }
 
 /* Semi-transparent icon on the right - exactly like reference */
@@ -1848,7 +1853,7 @@ body.exit-mode .process-btn:hover {
         text-align: center;
         letter-spacing: 1.8px;
     }
-    
+
     .logo-red-line {
         max-width: 220px;
     }
@@ -2205,14 +2210,14 @@ body.exit-mode .process-btn:hover {
 .asset-register-section {
     background-color: var(--color-white);
     padding: 28px;
-    border-radius: var(--border-radius);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-    border: 1px solid var(--color-border-gray);
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.06);
+    border: 1px solid #E8E8E8;
 }
 
 .table-header {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     margin-bottom: 20px;
 }
@@ -2357,50 +2362,53 @@ body.exit-mode .process-btn:hover {
 }
 
 .asset-table th {
-    padding: 12px 14px;
+    padding: 10px 12px;
     text-align: left;
-    font-size: 12px;
-    font-weight: bold;
+    font-size: 11px;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px;
     color: var(--color-text-gray);
     border-bottom: 2px solid var(--color-border-gray);
+    background-color: #F8F9FA;
 }
 
 .asset-table tbody tr {
-    border-bottom: 1px solid var(--color-light-gray);
-    transition: background-color var(--transition-fast), transform var(--transition-fast);
+    border-bottom: 1px solid #E8E8E8;
+    transition: background-color 0.12s ease;
     will-change: background-color;
 }
 
 .asset-table tbody tr:nth-child(even) {
-    background-color: rgba(248, 249, 250, 0.5);
+    background-color: #FAFAFA;
 }
 
 .asset-table tbody tr:hover,
 .asset-table tbody tr:focus {
-    background-color: var(--color-light-gray);
+    background-color: #F0F4F8;
     transform: none;
     box-shadow: none;
     outline: none;
 }
 
 .asset-table td {
-    padding: 11px 14px;
+    padding: 10px 12px;
     color: var(--color-text-gray);
+    font-size: 13px;
+    line-height: 1.4;
 }
 
 /* Status Badges */
 .status-badge {
     display: inline-block;
-    padding: 5px 14px;
-    font-size: 12px;
-    font-weight: bold;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    border-radius: var(--border-radius);
+    letter-spacing: 0.6px;
+    border-radius: 4px;
     text-align: center;
-    transition: all var(--transition-fast);
+    transition: none;
 }
 
 .status-badge:hover {
@@ -2409,13 +2417,15 @@ body.exit-mode .process-btn:hover {
 }
 
 .status-badge.in {
-    background-color: var(--color-green);
+    background-color: #10B981;
     color: var(--color-white);
+    box-shadow: 0 1px 2px rgba(16, 185, 129, 0.2);
 }
 
 .status-badge.out {
-    background-color: var(--color-orange);
+    background-color: #F59E0B;
     color: var(--color-white);
+    box-shadow: 0 1px 2px rgba(245, 158, 11, 0.2);
 }
 
 /* Status Icons */
@@ -2539,12 +2549,12 @@ body.exit-mode .process-btn:hover {
         font-size: 14px;
         padding: 12px 14px;
     }
-    
+
     .asset-table-accessible td {
         font-size: 14px;
         padding: 11px 14px;
     }
-    
+
     .asset-table-accessible .status-badge {
         font-size: 13px;
         padding: 5px 14px;
@@ -2686,12 +2696,12 @@ textarea:focus-visible {
 .watchlist-panel {
     background-color: var(--color-brand-red);
     color: var(--color-white);
-    padding: 20px 18px;
-    border-radius: var(--border-radius);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 18px 16px;
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.12);
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 14px;
     height: fit-content;
     position: sticky;
     top: var(--spacing-lg);
@@ -2703,9 +2713,9 @@ textarea:focus-visible {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 40px 20px;
+    padding: 32px 16px;
     text-align: center;
-    gap: 15px;
+    gap: 12px;
 }
 
 .clean-state-icon {
@@ -2883,26 +2893,26 @@ textarea:focus-visible {
 .watchlist-actions {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
-    padding-top: 15px;
-    border-top: 2px solid rgba(255, 255, 255, 0.3);
+    gap: 8px;
+    margin-top: 8px;
+    padding-top: 12px;
+    border-top: 2px solid rgba(255, 255, 255, 0.25);
 }
 
 .action-btn {
     width: 100%;
-    padding: 13px 16px;
-    font-size: 12px;
-    font-weight: bold;
+    padding: 12px 14px;
+    font-size: 11px;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.8px;
     border-radius: var(--border-radius);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.15s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 6px;
 }
 
 .primary-action {
@@ -2981,11 +2991,11 @@ textarea:focus-visible {
 /* Entry/Exit Toggle Section */
 .entry-exit-toggle-section {
     background-color: var(--color-white);
-    padding: 20px;
-    border-radius: var(--border-radius);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    border: 1px solid var(--color-border-gray);
-    margin-bottom: 20px;
+    padding: 16px;
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.06);
+    border: 1px solid #E8E8E8;
+    margin-bottom: 16px;
 }
 
 /* Slide Toggle Container */
@@ -3027,9 +3037,9 @@ textarea:focus-visible {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Slider when checked (ENTRY - Professional Blue) */
-.slide-toggle-input:checked + .slide-toggle-slider {
-    background-color: #2C5F8D;
+/* Slider when checked (ENTRY - Professional Green) */
+.slide-toggle-input:checked+.slide-toggle-slider {
+    background-color: #059669;
 }
 
 /* Toggle text */
@@ -3049,7 +3059,7 @@ textarea:focus-visible {
 }
 
 /* Focus styles for accessibility */
-.slide-toggle-input:focus + .slide-toggle-slider {
+.slide-toggle-input:focus+.slide-toggle-slider {
     outline: 3px solid var(--color-brand-red);
     outline-offset: 2px;
 }
@@ -3089,15 +3099,35 @@ textarea:focus-visible {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.guests-btn {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: var(--border-radius-lg);
+    background-color: var(--color-brand-red);
+    color: var(--color-white);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
 .guests-btn:hover {
     background-color: var(--color-brand-red-dark);
     transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12), 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
 .guests-btn:active {
     transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
 .guests-icon {
@@ -3182,6 +3212,7 @@ textarea:focus-visible {
         opacity: 0;
         transform: translateY(-30px) scale(0.95);
     }
+
     to {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -3224,27 +3255,42 @@ textarea:focus-visible {
 }
 
 .modal-close-btn {
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
-    color: var(--color-white);
-    width: 40px;
-    height: 40px;
+    background: #FFFFFF;
+    border: 2px solid #FFFFFF;
+    color: #EF4444;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all var(--transition-fast);
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
 }
 
 .modal-close-btn:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: scale(1.1);
+    background: #FEE2E2;
+    border-color: #FFFFFF;
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.modal-close-btn:active {
+    transform: scale(0.95) rotate(90deg);
 }
 
 .close-icon {
-    width: 20px;
-    height: 20px;
+    display: none;
+}
+
+.close-text {
+    font-size: 32px;
+    line-height: 1;
+    font-weight: 300;
+    color: #EF4444;
 }
 
 /* Modal Content */
@@ -3567,54 +3613,54 @@ textarea:focus-visible {
     .guest-modal-overlay {
         padding: 10px;
     }
-    
+
     .guest-modal {
         max-height: 95vh;
     }
-    
+
     .guest-modal-header {
         padding: 16px 20px;
     }
-    
+
     .modal-title {
         font-size: 18px;
     }
-    
+
     .guest-modal .card-input-container,
     .guest-modal .device-input-container,
     .guest-modal .device-list-container,
     .guest-modal .action-toggle-container {
         padding: 16px 20px;
     }
-    
+
     .guest-modal-footer {
         padding: 16px 20px;
     }
-    
+
     .guest-modal .action-buttons {
         flex-direction: column;
         gap: 12px;
     }
-    
+
     .guest-modal .action-btn {
         width: 100%;
         min-width: auto;
         padding: 14px 20px;
     }
-    
+
     .guest-modal .device-table-container {
         overflow-x: auto;
     }
-    
+
     .guest-modal .device-table {
         min-width: 600px;
     }
-    
+
     .guest-modal .device-table th,
     .guest-modal .device-table td {
         padding: 12px 10px;
     }
-    
+
     .guest-modal .process-guest-btn {
         padding: 16px 24px;
         font-size: 15px;
@@ -3627,17 +3673,17 @@ textarea:focus-visible {
         padding: 12px 16px;
         font-size: 12px;
     }
-    
+
     .guest-modal .device-table th,
     .guest-modal .device-table td {
         padding: 10px 8px;
     }
-    
+
     .guest-modal .serial-input {
         min-width: 100px;
         font-size: 13px;
     }
-    
+
     .guest-modal .process-guest-btn {
         padding: 14px 20px;
         font-size: 14px;
@@ -3782,7 +3828,7 @@ textarea:focus-visible {
     .right-column {
         order: -1;
     }
-    
+
     .watchlist-panel {
         position: static;
     }
@@ -3867,7 +3913,7 @@ textarea:focus-visible {
         flex-direction: column;
     }
 
-    .button-group-centered > * {
+    .button-group-centered>* {
         width: 100%;
     }
 }
@@ -4088,69 +4134,83 @@ textarea:focus-visible {
    ─────────────────────────────────────────────────────────────────────────── */
 
 @media screen and (min-width: 768px) and (max-width: 1279px) {
+
     /* Form Section Accessibility - Tablet */
     .form-section-accessible {
         padding: var(--accessibility-section-padding);
     }
-    
+
     .form-section-accessible .label-standard {
-        font-size: var(--accessibility-label-font-size); /* Maintain 22px */
+        font-size: var(--accessibility-label-font-size);
+        /* Maintain 22px */
     }
-    
+
     .form-section-accessible .input-standard {
-        font-size: var(--accessibility-input-font-size); /* Maintain 28px */
+        font-size: var(--accessibility-input-font-size);
+        /* Maintain 28px */
         padding: var(--accessibility-input-padding-vertical) var(--accessibility-input-padding-horizontal);
     }
-    
+
     .form-section-accessible .input-standard::placeholder {
-        font-size: var(--accessibility-placeholder-font-size); /* Maintain 22px */
+        font-size: var(--accessibility-placeholder-font-size);
+        /* Maintain 22px */
     }
-    
+
     .form-section-accessible .action-button-full {
-        font-size: var(--accessibility-button-font-size); /* Maintain 20px */
+        font-size: var(--accessibility-button-font-size);
+        /* Maintain 20px */
         padding: var(--accessibility-button-padding-vertical) var(--button-padding-horizontal);
     }
-    
+
     /* Guest Modal Accessibility - Tablet */
     .guest-modal-accessible .input-label {
-        font-size: var(--guest-modal-label-size); /* Maintain 20px */
+        font-size: var(--guest-modal-label-size);
+        /* Maintain 20px */
     }
-    
+
     .guest-modal-accessible .scanner-input {
-        font-size: var(--guest-modal-input-size); /* Maintain 24px */
+        font-size: var(--guest-modal-input-size);
+        /* Maintain 24px */
     }
-    
+
     .guest-modal-accessible .action-btn {
-        font-size: var(--guest-modal-button-size); /* Maintain 20px */
+        font-size: var(--guest-modal-button-size);
+        /* Maintain 20px */
     }
-    
+
     .guest-modal-accessible .device-table {
-        font-size: var(--guest-modal-table-size); /* Maintain 15px */
+        font-size: var(--guest-modal-table-size);
+        /* Maintain 15px */
     }
-    
+
     .guest-modal-accessible .section-title {
-        font-size: var(--guest-modal-title-size); /* Maintain 22px */
+        font-size: var(--guest-modal-title-size);
+        /* Maintain 22px */
     }
-    
+
     /* Table Accessibility - Tablet */
     .asset-table-accessible th {
-        font-size: var(--table-header-font-size-accessible); /* Maintain 14px */
+        font-size: var(--table-header-font-size-accessible);
+        /* Maintain 14px */
     }
-    
+
     .asset-table-accessible td {
-        font-size: var(--table-body-font-size-accessible); /* Maintain 14px */
+        font-size: var(--table-body-font-size-accessible);
+        /* Maintain 14px */
     }
-    
+
     .asset-table-accessible .status-badge {
-        font-size: var(--table-badge-font-size-accessible); /* Maintain 13px */
+        font-size: var(--table-badge-font-size-accessible);
+        /* Maintain 13px */
     }
-    
+
     /* Ensure single-column layout works with larger text */
     .form-section-accessible .input-grid-3col {
-        grid-template-columns: 1fr; /* Single column on tablet */
+        grid-template-columns: 1fr;
+        /* Single column on tablet */
         gap: var(--accessibility-element-gap);
     }
-    
+
     /* Ensure no horizontal scrolling */
     .form-section-accessible,
     .guest-modal-accessible,
@@ -4165,95 +4225,117 @@ textarea:focus-visible {
    ─────────────────────────────────────────────────────────────────────────── */
 
 @media screen and (max-width: 767px) {
+
     /* Form Section Accessibility - Mobile */
     .form-section-accessible {
-        padding: 20px; /* Slightly reduced from 30px */
+        padding: 20px;
+        /* Slightly reduced from 30px */
     }
-    
+
     .form-section-accessible .label-standard {
-        font-size: 20px; /* Reduced from 22px (10% reduction) */
+        font-size: 20px;
+        /* Reduced from 22px (10% reduction) */
     }
-    
+
     .form-section-accessible .input-standard {
-        font-size: 24px; /* Reduced from 28px (14% reduction for better fit) */
-        padding: 16px 18px; /* Slightly reduced padding */
-        min-height: 44px; /* Ensure touch target minimum */
+        font-size: 24px;
+        /* Reduced from 28px (14% reduction for better fit) */
+        padding: 16px 18px;
+        /* Slightly reduced padding */
+        min-height: 44px;
+        /* Ensure touch target minimum */
     }
-    
+
     .form-section-accessible .input-standard::placeholder {
-        font-size: 20px; /* Reduced from 22px (10% reduction) */
+        font-size: 20px;
+        /* Reduced from 22px (10% reduction) */
     }
-    
+
     .form-section-accessible .action-button-full {
-        font-size: 18px; /* Reduced from 20px (10% reduction) */
-        padding: 18px 30px; /* Maintain adequate padding */
-        min-height: 44px; /* Ensure touch target minimum */
+        font-size: 18px;
+        /* Reduced from 20px (10% reduction) */
+        padding: 18px 30px;
+        /* Maintain adequate padding */
+        min-height: 44px;
+        /* Ensure touch target minimum */
     }
-    
+
     .form-section-accessible .input-grid-3col {
-        grid-template-columns: 1fr; /* Single column on mobile */
-        gap: 20px; /* Slightly reduced gap */
+        grid-template-columns: 1fr;
+        /* Single column on mobile */
+        gap: 20px;
+        /* Slightly reduced gap */
     }
-    
+
     /* Guest Modal Accessibility - Mobile */
     .guest-modal-accessible .input-label {
-        font-size: 18px; /* Reduced from 20px (10% reduction) */
+        font-size: 18px;
+        /* Reduced from 20px (10% reduction) */
     }
-    
+
     .guest-modal-accessible .scanner-input {
-        font-size: 22px; /* Reduced from 24px (8% reduction) */
+        font-size: 22px;
+        /* Reduced from 24px (8% reduction) */
         padding: 14px 16px;
-        min-height: 44px; /* Ensure touch target minimum */
+        min-height: 44px;
+        /* Ensure touch target minimum */
     }
-    
+
     .guest-modal-accessible .action-btn {
-        font-size: 18px; /* Reduced from 20px (10% reduction) */
+        font-size: 18px;
+        /* Reduced from 20px (10% reduction) */
         padding: 14px 20px;
-        min-height: 44px; /* Ensure touch target minimum */
+        min-height: 44px;
+        /* Ensure touch target minimum */
     }
-    
+
     .guest-modal-accessible .device-table {
-        font-size: 14px; /* Reduced from 15px (7% reduction) */
+        font-size: 14px;
+        /* Reduced from 15px (7% reduction) */
     }
-    
+
     .guest-modal-accessible .section-title {
-        font-size: 20px; /* Reduced from 22px (10% reduction) */
+        font-size: 20px;
+        /* Reduced from 22px (10% reduction) */
     }
-    
+
     /* Table Accessibility - Mobile */
     .asset-table-accessible th {
-        font-size: 13px; /* Reduced from 14px (7% reduction) */
+        font-size: 13px;
+        /* Reduced from 14px (7% reduction) */
         padding: 10px 12px;
     }
-    
+
     .asset-table-accessible td {
-        font-size: 13px; /* Reduced from 14px (7% reduction) */
+        font-size: 13px;
+        /* Reduced from 14px (7% reduction) */
         padding: 10px 12px;
     }
-    
+
     .asset-table-accessible .status-badge {
-        font-size: 12px; /* Reduced from 13px (8% reduction) */
+        font-size: 12px;
+        /* Reduced from 13px (8% reduction) */
         padding: 4px 10px;
     }
-    
+
     /* Ensure minimum readable sizes are maintained */
     .form-section-accessible .input-group {
         gap: 6px;
     }
-    
+
     /* Verify touch targets remain at least 44x44px */
     .form-section-accessible button,
     .form-section-accessible input,
     .form-section-accessible select {
         min-height: 44px;
     }
-    
+
     .guest-modal-accessible button,
     .guest-modal-accessible input,
     .guest-modal-accessible select {
         min-height: 44px;
     }
-    
+
     /* Test on small screens (375px, 320px width) */
     .form-section-accessible,
     .guest-modal-accessible {
@@ -4268,47 +4350,50 @@ textarea:focus-visible {
    ─────────────────────────────────────────────────────────────────────────── */
 
 @media screen and (max-width: 374px) {
+
     /* Further optimize for very small screens */
     .form-section-accessible {
         padding: 15px;
     }
-    
+
     .form-section-accessible .label-standard {
-        font-size: 18px; /* Further reduced for small screens */
+        font-size: 18px;
+        /* Further reduced for small screens */
     }
-    
+
     .form-section-accessible .input-standard {
-        font-size: 22px; /* Further reduced for small screens */
+        font-size: 22px;
+        /* Further reduced for small screens */
         padding: 14px 16px;
     }
-    
+
     .form-section-accessible .input-standard::placeholder {
         font-size: 18px;
     }
-    
+
     .form-section-accessible .action-button-full {
         font-size: 16px;
         padding: 16px 24px;
     }
-    
+
     .guest-modal-accessible .input-label {
         font-size: 16px;
     }
-    
+
     .guest-modal-accessible .scanner-input {
         font-size: 20px;
         padding: 12px 14px;
     }
-    
+
     .guest-modal-accessible .action-btn {
         font-size: 16px;
         padding: 12px 16px;
     }
-    
+
     .guest-modal-accessible .section-title {
         font-size: 18px;
     }
-    
+
     /* Ensure all touch targets still meet 44x44px minimum */
     .form-section-accessible button,
     .form-section-accessible input,
@@ -4355,12 +4440,12 @@ textarea:focus-visible {
         .form-section-accessible .label-standard {
             font-size: 20px;
         }
-        
+
         .form-section-accessible .input-standard {
             font-size: 24px;
             padding: 16px 18px;
         }
-        
+
         .form-section-accessible .action-button-full {
             font-size: 18px;
             padding: 18px 30px;
@@ -4429,7 +4514,7 @@ textarea:focus-visible {
 }
 
 /* Focus style for toggle switches */
-.slide-toggle-input:focus + .slide-toggle-slider {
+.slide-toggle-input:focus+.slide-toggle-slider {
     outline: 3px solid #2196F3;
     outline-offset: 2px;
     box-shadow: 0 0 0 5px rgba(33, 150, 243, 0.15);
@@ -4483,7 +4568,7 @@ textarea:focus-visible {
 }
 
 /* Table controls focus indicators */
-.asset-table-accessible + .table-controls .control-btn:focus,
+.asset-table-accessible+.table-controls .control-btn:focus,
 .table-controls .filter-dropdown:focus {
     outline: 3px solid #2196F3;
     outline-offset: 2px;
@@ -4502,6 +4587,7 @@ textarea:focus-visible {
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
+
     *:focus,
     *:focus-visible {
         outline: 4px solid currentColor;
@@ -4511,6 +4597,7 @@ textarea:focus-visible {
 
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
+
     *:focus,
     *:focus-visible {
         transition: none;

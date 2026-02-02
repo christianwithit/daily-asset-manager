@@ -7,6 +7,12 @@
     <meta name="description" content="Vision Group Uganda - Guest Management System - Security Desk Interface">
     <meta name="theme-color" content="#CF2E2E">
     <title>Guest Management - Vision Group Uganda</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" sizes="32x32" href="images/favicon.png.jpeg">
+    <link rel="icon" type="image/jpeg" sizes="16x16" href="images/favicon.png.jpeg">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon.png.jpeg">
+    
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/guest-styles.css">
     <!-- Lucide Icons - Modern, Professional Icon Library -->
@@ -14,6 +20,12 @@
 </head>
 
 <body>
+    <!-- Fixed Exit Button - Top Right Corner -->
+    <button class="fixed-exit-btn" id="fixedExitBtn" title="Exit Guest Management" aria-label="Exit Guest Management">
+        <i data-lucide="x" class="fixed-exit-icon"></i>
+        <span class="exit-text">✕</span>
+    </button>
+
     <!-- Header Section -->
     <header class="header" role="banner">
         <div class="header-top">
@@ -21,7 +33,7 @@
                 <!-- Left: Vision Group Logo and Branding -->
                 <div class="header-left">
                     <div class="logo-container">
-                        <img src="https://www.visiongroup.co.ug/images/vision-group-logo.png"
+                        <img src="images/vision-group-logo.png.png"
                             alt="Vision Group Uganda - National Pride, Global Excellence" class="vision-logo"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="logo-fallback" style="display: none;">
@@ -40,7 +52,7 @@
                     <p class="subtitle">Security Desk Interface</p>
                 </div>
 
-                <!-- Right: Guard Info and Date -->
+                <!-- Right: Guard Info, Date, and Exit Button -->
                 <div class="header-right">
                     <div class="guard-info">
                         <i data-lucide="shield-check" class="guard-icon"></i>
@@ -48,6 +60,9 @@
                         <span class="guard-name" id="guardName">Alex Gitta</span>
                     </div>
                     <div class="current-date" id="headerDate">30 Jan 2026</div>
+                    <button class="exit-btn" id="exitGuestSystemBtn" title="Exit Guest Management">
+                        <i data-lucide="x" class="exit-icon"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -70,18 +85,33 @@
     <!-- Main Content Area -->
     <main class="main-content" role="main">
         <div class="guest-container guest-modal-accessible">
-            <!-- Section 1: Scan Temporary Guest Card -->
-            <section class="guest-section card-section" aria-label="Guest Card Scanning">
+            <!-- Section 1: Guest Information & Card -->
+            <section class="guest-section card-section" aria-label="Guest Information">
                 <div class="section-header">
                     <h2 class="section-title">
-                        <i data-lucide="credit-card" class="section-icon"></i>
-                        Scan Guest Temporary Card
+                        <i data-lucide="user-check" class="section-icon"></i>
+                        Guest Information
                     </h2>
                 </div>
                 
                 <div class="card-input-container">
+                    <!-- Search Existing Guest -->
+                    <div class="input-group search-group">
+                        <label for="guestSearch" class="input-label">Search Existing Guest</label>
+                        <div class="search-input-wrapper">
+                            <input type="text" id="guestSearch" class="scanner-input search-input" 
+                                   placeholder="Search by name, card, or company..." 
+                                   autocomplete="off">
+                            <i data-lucide="search" class="search-icon-inline"></i>
+                        </div>
+                        <div class="search-results" id="searchResults" style="display: none;">
+                            <!-- Search results will appear here -->
+                        </div>
+                    </div>
+
+                    <!-- Guest Card Number -->
                     <div class="input-group">
-                        <label for="guestCardNumber" class="input-label">Temporary Card Number</label>
+                        <label for="guestCardNumber" class="input-label">Temporary Card Number *</label>
                         <input type="text" id="guestCardNumber" class="scanner-input" 
                                placeholder="Scan or enter card number..." 
                                aria-required="true" autocomplete="off">
@@ -90,10 +120,58 @@
                             <span>Ready to scan...</span>
                         </div>
                     </div>
+
+                    <!-- Card Status Alert -->
+                    <div class="card-status-alert" id="cardStatusAlert" style="display: none;">
+                        <!-- Status messages will appear here -->
+                    </div>
                     
-                    <div class="confirmation-message" id="cardConfirmation" style="display: none;">
-                        <i data-lucide="check-circle" class="confirm-icon"></i>
-                        <span>✅ Guest Card Detected</span>
+                    <!-- Guest Details Form -->
+                    <div class="guest-details-form" id="guestDetailsForm">
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label for="guestName" class="input-label">Guest Full Name *</label>
+                                <input type="text" id="guestName" class="form-input" 
+                                       placeholder="Enter guest name..." 
+                                       aria-required="true" autocomplete="off">
+                            </div>
+                            
+                            <div class="input-group">
+                                <label for="guestCompany" class="input-label">Company/Organization *</label>
+                                <input type="text" id="guestCompany" class="form-input" 
+                                       placeholder="Enter company name..." 
+                                       aria-required="true" autocomplete="off">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label for="guestPurpose" class="input-label">Purpose of Visit *</label>
+                                <select id="guestPurpose" class="form-input form-select" aria-required="true">
+                                    <option value="">Select purpose...</option>
+                                    <option value="meeting">Business Meeting</option>
+                                    <option value="interview">Interview</option>
+                                    <option value="delivery">Delivery/Pickup</option>
+                                    <option value="maintenance">Maintenance/Service</option>
+                                    <option value="training">Training/Workshop</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label for="hostEmployee" class="input-label">Host Employee *</label>
+                                <input type="text" id="hostEmployee" class="form-input" 
+                                       placeholder="Who are they visiting?" 
+                                       aria-required="true" autocomplete="off">
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="guestNotes" class="input-label">Additional Notes (Optional)</label>
+                            <textarea id="guestNotes" class="form-input form-textarea" 
+                                      placeholder="Any special instructions or notes..."
+                                      rows="2"></textarea>
+                        </div>
                     </div>
                 </div>
             </section>

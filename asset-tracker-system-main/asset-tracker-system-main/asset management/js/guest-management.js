@@ -7,12 +7,20 @@
 const guestState = {
     currentAction: 'check-in', // 'check-in' or 'check-out'
     guestCard: '',
+    guestName: '',
+    guestCompany: '',
+    guestPurpose: '',
+    hostEmployee: '',
+    guestNotes: '',
     devices: [], // Array of {deviceTag, serialNumber, id}
     deviceCounter: 0,
     isProcessing: false,
     scannerTimeout: null,
     fastInputThreshold: 100, // milliseconds - typical scanner input speed
-    lastInputTime: 0
+    lastInputTime: 0,
+    existingGuest: null, // Stores existing guest data if found
+    activeGuests: [], // Simulated database of active guests
+    guestHistory: [] // Simulated database of all guests
 };
 
 /**
@@ -104,18 +112,64 @@ function initializeGuestFooterClock() {
  * Set up all event listeners for the guest system
  */
 function setupGuestEventListeners() {
+    // Fixed exit button (top-right corner)
+    const fixedExitBtn = document.getElementById('fixedExitBtn');
+    if (fixedExitBtn) {
+        fixedExitBtn.addEventListener('click', handleBackToMain);
+    }
+    
     // Back to main system button
     const backBtn = document.getElementById('backToMainBtn');
     if (backBtn) {
         backBtn.addEventListener('click', handleBackToMain);
     }
     
+    // Exit button in header
+    const exitBtn = document.getElementById('exitGuestSystemBtn');
+    if (exitBtn) {
+        exitBtn.addEventListener('click', handleBackToMain);
+    }
+    
+    // Guest search input
+    const searchInput = document.getElementById('guestSearch');
+    if (searchInput) {
+        searchInput.addEventListener('input', debounce(handleGuestSearch, 300));
+        searchInput.addEventListener('focus', () => {
+            if (searchInput.value.trim()) {
+                handleGuestSearch({ target: searchInput });
+            }
+        });
+    }
+    
+    // Click outside to close search results
+    document.addEventListener('click', (e) => {
+        const searchResults = document.getElementById('searchResults');
+        const searchInput = document.getElementById('guestSearch');
+        if (searchResults && !searchResults.contains(e.target) && e.target !== searchInput) {
+            searchResults.style.display = 'none';
+        }
+    });
+    
     // Guest card input
     const cardInput = document.getElementById('guestCardNumber');
     if (cardInput) {
         cardInput.addEventListener('input', handleCardInput);
         cardInput.addEventListener('keydown', handleCardKeydown);
+        cardInput.addEventListener('blur', handleCardBlur);
     }
+    
+    // Guest detail inputs
+    const guestName = document.getElementById('guestName');
+    const guestCompany = document.getElementById('guestCompany');
+    const guestPurpose = document.getElementById('guestPurpose');
+    const hostEmployee = document.getElementById('hostEmployee');
+    const guestNotes = document.getElementById('guestNotes');
+    
+    if (guestName) guestName.addEventListener('input', (e) => guestState.guestName = e.target.value.trim());
+    if (guestCompany) guestCompany.addEventListener('input', (e) => guestState.guestCompany = e.target.value.trim());
+    if (guestPurpose) guestPurpose.addEventListener('change', (e) => guestState.guestPurpose = e.target.value);
+    if (hostEmployee) hostEmployee.addEventListener('input', (e) => guestState.hostEmployee = e.target.value.trim());
+    if (guestNotes) guestNotes.addEventListener('input', (e) => guestState.guestNotes = e.target.value.trim());
     
     // Device tag input
     const deviceInput = document.getElementById('deviceTagInput');
@@ -144,6 +198,9 @@ function setupGuestEventListeners() {
     
     // Keyboard shortcuts
     setupKeyboardShortcuts();
+    
+    // Initialize with sample data for testing
+    initializeSampleData();
 }
 
 /**
@@ -209,21 +266,342 @@ function handleCardInput(event) {
     const cardNumber = event.target.value.trim();
     guestState.guestCard = cardNumber;
     
-    // Show/hide confirmation message
-    const confirmation = document.getElementById('cardConfirmation');
-    if (confirmation) {
-        if (cardNumber.length >= scannerConfig.minLength) {
-            confirmation.style.display = 'flex';
-            confirmation.classList.add('fade-in');
-        } else {
-            confirmation.style.display = 'none';
-        }
-    }
-    
     // Clear validation errors if card is entered
     if (cardNumber.length > 0) {
         clearValidationErrors();
     }
+}
+
+/**
+ * Handle card blur - check for duplicates and existing guests
+ */
+function handleCardBlur(event) {
+    const cardNumber = event.target.value.trim();
+    
+    if (cardNumber.length >= scannerConfig.minLength) {
+        checkCardStatus(cardNumber);
+    }
+}
+
+/**
+ * Check card status - duplicate detection and existing guest lookup
+ */
+function checkCardStatus(cardNumber) {
+    const alertContainer = document.getElementById('cardStatusAlert');
+    if (!alertContainer) return;
+    
+    // Check if guest is already checked in
+    const activeGuest = guestState.activeGuests.find(g => 
+        g.cardNumber.toUpperCase() === cardNumber.toUpperCase() && g.status === 'checked-in'
+    );
+    
+    if (activeGuest) {
+        // Guest is already checked in
+        guestState.existingGuest = activeGuest;
+        
+        if (guestState.currentAction === 'check-in') {
+            showCardAlert('warning', 'Duplicate Check-In Detected', 
+                `${activeGuest.name} is already checked in at ${formatTime(activeGuest.checkInTime)}. Switch to Check-Out mode?`);
+            
+            // Auto-switch to check-out mode
+            setTimeout(() => {
+                handleActionToggle('check-out');
+            }, 2000);
+        } else {
+            // Check-out mode - show guest info
+            showCardAlert('success', 'Guest Found', 
+                `Ready to check out ${activeGuest.name} from ${activeGuest.company}`);
+            prefillGuestDetails(activeGuest);
+        }
+        return;
+    }
+    
+    // Check if guest exists in history (returning visitor)
+    const historicalGuest = guestState.guestHistory.find(g => 
+        g.cardNumber.toUpperCase() === cardNumber.toUpperCase()
+    );
+    
+    if (historicalGuest && guestState.currentAction === 'check-in') {
+        guestState.existingGuest = historicalGuest;
+        showCardAlert('info', 'Welcome Back!', 
+            `${historicalGuest.name} last visited on ${formatDate(historicalGuest.lastVisit)}`);
+        prefillGuestDetails(historicalGuest);
+        return;
+    }
+    
+    // New guest
+    if (guestState.currentAction === 'check-in') {
+        showCardAlert('success', 'New Guest', 'Please fill in guest details below');
+        guestState.existingGuest = null;
+        clearGuestDetails();
+    } else {
+        // Trying to check out non-existent guest
+        showCardAlert('error', 'Guest Not Found', 
+            'This card is not associated with any checked-in guest. Please verify the card number.');
+    }
+}
+
+/**
+ * Show card status alert
+ */
+function showCardAlert(type, title, message) {
+    const alertContainer = document.getElementById('cardStatusAlert');
+    if (!alertContainer) return;
+    
+    const iconMap = {
+        'warning': 'alert-triangle',
+        'error': 'x-circle',
+        'success': 'check-circle',
+        'info': 'info'
+    };
+    
+    alertContainer.className = `card-status-alert ${type}`;
+    alertContainer.innerHTML = `
+        <i data-lucide="${iconMap[type]}" class="alert-icon"></i>
+        <div class="alert-content">
+            <div class="alert-title">${title}</div>
+            <div class="alert-message">${message}</div>
+        </div>
+    `;
+    alertContainer.style.display = 'flex';
+    
+    // Reinitialize icons
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+}
+
+/**
+ * Prefill guest details from existing data
+ */
+function prefillGuestDetails(guest) {
+    const nameInput = document.getElementById('guestName');
+    const companyInput = document.getElementById('guestCompany');
+    const purposeInput = document.getElementById('guestPurpose');
+    const hostInput = document.getElementById('hostEmployee');
+    
+    if (nameInput) nameInput.value = guest.name || '';
+    if (companyInput) companyInput.value = guest.company || '';
+    if (purposeInput) purposeInput.value = guest.purpose || '';
+    if (hostInput) hostInput.value = guest.hostEmployee || '';
+    
+    // Update state
+    guestState.guestName = guest.name || '';
+    guestState.guestCompany = guest.company || '';
+    guestState.guestPurpose = guest.purpose || '';
+    guestState.hostEmployee = guest.hostEmployee || '';
+    
+    // If checking out, also load devices
+    if (guestState.currentAction === 'check-out' && guest.devices) {
+        guestState.devices = guest.devices.map(d => ({...d}));
+        renderDeviceList();
+        updateDeviceCount();
+    }
+}
+
+/**
+ * Clear guest details form
+ */
+function clearGuestDetails() {
+    const nameInput = document.getElementById('guestName');
+    const companyInput = document.getElementById('guestCompany');
+    const purposeInput = document.getElementById('guestPurpose');
+    const hostInput = document.getElementById('hostEmployee');
+    const notesInput = document.getElementById('guestNotes');
+    
+    if (nameInput) nameInput.value = '';
+    if (companyInput) companyInput.value = '';
+    if (purposeInput) purposeInput.value = '';
+    if (hostInput) hostInput.value = '';
+    if (notesInput) notesInput.value = '';
+    
+    guestState.guestName = '';
+    guestState.guestCompany = '';
+    guestState.guestPurpose = '';
+    guestState.hostEmployee = '';
+    guestState.guestNotes = '';
+}
+
+/**
+ * Handle guest search
+ */
+function handleGuestSearch(event) {
+    const query = event.target.value.trim().toLowerCase();
+    const resultsContainer = document.getElementById('searchResults');
+    
+    if (!resultsContainer) return;
+    
+    if (query.length < 2) {
+        resultsContainer.style.display = 'none';
+        return;
+    }
+    
+    // Search in active guests and history
+    const allGuests = [...guestState.activeGuests, ...guestState.guestHistory];
+    const results = allGuests.filter(guest => 
+        guest.name.toLowerCase().includes(query) ||
+        guest.company.toLowerCase().includes(query) ||
+        guest.cardNumber.toLowerCase().includes(query) ||
+        (guest.hostEmployee && guest.hostEmployee.toLowerCase().includes(query))
+    );
+    
+    // Remove duplicates (prefer active guests)
+    const uniqueResults = [];
+    const seenCards = new Set();
+    
+    results.forEach(guest => {
+        if (!seenCards.has(guest.cardNumber)) {
+            uniqueResults.push(guest);
+            seenCards.add(guest.cardNumber);
+        }
+    });
+    
+    renderSearchResults(uniqueResults.slice(0, 10)); // Limit to 10 results
+}
+
+/**
+ * Render search results
+ */
+function renderSearchResults(results) {
+    const resultsContainer = document.getElementById('searchResults');
+    if (!resultsContainer) return;
+    
+    if (results.length === 0) {
+        resultsContainer.innerHTML = '<div class="no-results">No guests found</div>';
+        resultsContainer.style.display = 'block';
+        return;
+    }
+    
+    resultsContainer.innerHTML = results.map(guest => {
+        const isActive = guest.status === 'checked-in';
+        const statusClass = isActive ? 'checked-in' : 'checked-out';
+        const statusText = isActive ? '🟢 Checked In' : '⚪ Checked Out';
+        const itemClass = isActive ? 'search-result-item active-guest' : 'search-result-item';
+        
+        return `
+            <div class="${itemClass}" onclick="selectSearchResult('${guest.cardNumber}')">
+                <div class="result-name">${guest.name}</div>
+                <div class="result-details">
+                    <span>${guest.company}</span>
+                    <span>•</span>
+                    <span>Card: ${guest.cardNumber}</span>
+                    <span>•</span>
+                    <span class="result-status ${statusClass}">${statusText}</span>
+                </div>
+            </div>
+        `;
+    }).join('');
+    
+    resultsContainer.style.display = 'block';
+}
+
+/**
+ * Select a search result
+ */
+function selectSearchResult(cardNumber) {
+    const cardInput = document.getElementById('guestCardNumber');
+    const searchInput = document.getElementById('guestSearch');
+    const resultsContainer = document.getElementById('searchResults');
+    
+    if (cardInput) {
+        cardInput.value = cardNumber;
+        guestState.guestCard = cardNumber;
+        checkCardStatus(cardNumber);
+        cardInput.focus();
+    }
+    
+    if (searchInput) {
+        searchInput.value = '';
+    }
+    
+    if (resultsContainer) {
+        resultsContainer.style.display = 'none';
+    }
+}
+
+/**
+ * Debounce function for search
+ */
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+/**
+ * Format time for display
+ */
+function formatTime(date) {
+    if (!date) return '';
+    const d = new Date(date);
+    return d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+}
+
+/**
+ * Format date for display
+ */
+function formatDate(date) {
+    if (!date) return '';
+    const d = new Date(date);
+    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+}
+
+/**
+ * Initialize sample data for testing
+ */
+function initializeSampleData() {
+    // Sample active guests (currently checked in)
+    guestState.activeGuests = [
+        {
+            id: 'guest-001',
+            cardNumber: 'TC-1001',
+            name: 'John Doe',
+            company: 'Acme Corporation',
+            purpose: 'meeting',
+            hostEmployee: 'Sarah Nakato',
+            checkInTime: new Date(Date.now() - 2 * 60 * 60 * 1000), // 2 hours ago
+            status: 'checked-in',
+            devices: [
+                { id: 'device_1', deviceTag: 'DT-1001', serialNumber: 'SN-HP-12345', scannedTime: new Date(), scannedTimeFormatted: '10:30:00' }
+            ]
+        },
+        {
+            id: 'guest-002',
+            cardNumber: 'TC-1002',
+            name: 'Jane Smith',
+            company: 'Tech Solutions Ltd',
+            purpose: 'interview',
+            hostEmployee: 'Peter Ssemakula',
+            checkInTime: new Date(Date.now() - 1 * 60 * 60 * 1000), // 1 hour ago
+            status: 'checked-in',
+            devices: []
+        }
+    ];
+    
+    // Sample historical guests
+    guestState.guestHistory = [
+        {
+            id: 'guest-003',
+            cardNumber: 'TC-1003',
+            name: 'Robert Johnson',
+            company: 'Global Enterprises',
+            purpose: 'delivery',
+            hostEmployee: 'Mary Nambi',
+            lastVisit: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000), // 7 days ago
+            status: 'checked-out'
+        }
+    ];
+    
+    console.log('📊 Sample data initialized:', {
+        activeGuests: guestState.activeGuests.length,
+        historicalGuests: guestState.guestHistory.length
+    });
 }
 
 /**
@@ -497,8 +875,13 @@ function updateActionState(action) {
         }
     }
     
-    // Update page styling for check-out mode (visual warning)
-    document.body.classList.toggle('checkout-mode', action === 'check-out');
+    // Update page styling for mode (visual indication)
+    document.body.classList.remove('checkin-mode', 'checkout-mode');
+    if (action === 'check-in') {
+        document.body.classList.add('checkin-mode');
+    } else {
+        document.body.classList.add('checkout-mode');
+    }
     
     console.log('🔄 Action mode:', action);
 }
@@ -549,9 +932,40 @@ function validateGuestInput() {
         errors.push('Guest card number is required');
     }
     
-    // Check devices (at least one required)
-    if (guestState.devices.length === 0) {
-        errors.push('At least one device must be scanned');
+    // For check-in, validate guest details
+    if (guestState.currentAction === 'check-in') {
+        if (!guestState.guestName || guestState.guestName.length < 2) {
+            errors.push('Guest name is required');
+        }
+        
+        if (!guestState.guestCompany || guestState.guestCompany.length < 2) {
+            errors.push('Company/Organization is required');
+        }
+        
+        if (!guestState.guestPurpose) {
+            errors.push('Purpose of visit is required');
+        }
+        
+        if (!guestState.hostEmployee || guestState.hostEmployee.length < 2) {
+            errors.push('Host employee name is required');
+        }
+        
+        // Check devices (at least one required for check-in)
+        if (guestState.devices.length === 0) {
+            errors.push('At least one device must be scanned for check-in');
+        }
+    }
+    
+    // For check-out, validate that guest exists
+    if (guestState.currentAction === 'check-out') {
+        const activeGuest = guestState.activeGuests.find(g => 
+            g.cardNumber.toUpperCase() === guestState.guestCard.toUpperCase() && 
+            g.status === 'checked-in'
+        );
+        
+        if (!activeGuest) {
+            errors.push('Cannot check out: Guest is not currently checked in');
+        }
     }
     
     // Check device serial numbers
@@ -573,15 +987,58 @@ function processGuestTransaction() {
     const transaction = {
         id: generateTransactionId(),
         timestamp: new Date().toISOString(),
-        guestCard: guestState.guestCard,
+        cardNumber: guestState.guestCard,
+        name: guestState.guestName,
+        company: guestState.guestCompany,
+        purpose: guestState.guestPurpose,
+        hostEmployee: guestState.hostEmployee,
+        notes: guestState.guestNotes,
         action: guestState.currentAction,
         devices: [...guestState.devices], // Copy devices array
         guardName: document.getElementById('guardName')?.textContent || 'Unknown',
         processed: true
     };
     
+    // Update active guests list
+    if (guestState.currentAction === 'check-in') {
+        // Add to active guests
+        const newGuest = {
+            ...transaction,
+            checkInTime: new Date(),
+            status: 'checked-in'
+        };
+        guestState.activeGuests.push(newGuest);
+        
+        // Add to history if not already there
+        const existsInHistory = guestState.guestHistory.find(g => 
+            g.cardNumber === transaction.cardNumber
+        );
+        if (!existsInHistory) {
+            guestState.guestHistory.push({
+                ...transaction,
+                lastVisit: new Date(),
+                status: 'checked-out'
+            });
+        }
+    } else {
+        // Check-out: Remove from active guests
+        guestState.activeGuests = guestState.activeGuests.filter(g => 
+            g.cardNumber.toUpperCase() !== transaction.cardNumber.toUpperCase()
+        );
+        
+        // Update history
+        const historyGuest = guestState.guestHistory.find(g => 
+            g.cardNumber === transaction.cardNumber
+        );
+        if (historyGuest) {
+            historyGuest.lastVisit = new Date();
+            historyGuest.status = 'checked-out';
+        }
+    }
+    
     // Log transaction (in real system, this would save to database)
     console.log('💾 Guest Transaction Processed:', transaction);
+    console.log('📊 Active Guests:', guestState.activeGuests.length);
     
     // Show success message
     showSuccessMessage();
@@ -641,10 +1098,13 @@ function resetGuestForm() {
         cardInput.value = '';
     }
     
-    // Clear card confirmation
-    const cardConfirmation = document.getElementById('cardConfirmation');
-    if (cardConfirmation) {
-        cardConfirmation.style.display = 'none';
+    // Clear guest details
+    clearGuestDetails();
+    
+    // Clear card status alert
+    const alertContainer = document.getElementById('cardStatusAlert');
+    if (alertContainer) {
+        alertContainer.style.display = 'none';
     }
     
     // Clear devices
@@ -669,6 +1129,9 @@ function resetGuestForm() {
     
     // Clear validation errors
     clearValidationErrors();
+    
+    // Clear existing guest reference
+    guestState.existingGuest = null;
     
     // Focus card input
     if (cardInput) {
@@ -799,3 +1262,4 @@ function setupKeyboardShortcuts() {
  */
 window.updateDeviceSerial = updateDeviceSerial;
 window.removeDevice = removeDevice;
+window.selectSearchResult = selectSearchResult;

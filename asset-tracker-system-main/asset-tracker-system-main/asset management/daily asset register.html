@@ -7,6 +7,12 @@
     <meta name="description" content="Vision Group Uganda - Daily Asset Register - Security & Asset Management System">
     <meta name="theme-color" content="#CF2E2E">
     <title>Daily Asset Register - Vision Group Uganda</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" sizes="32x32" href="images/favicon.png.jpeg">
+    <link rel="icon" type="image/jpeg" sizes="16x16" href="images/favicon.png.jpeg">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon.png.jpeg">
+    
     <link rel="stylesheet" href="css/styles.css">
     <!-- Lucide Icons - Modern, Professional Icon Library -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -20,7 +26,7 @@
                 <!-- Left: Vision Group Logo -->
                 <div class="header-left">
                     <div class="logo-container">
-                        <img src="images/vision-group-logo.png"
+                        <img src="images/vision-group-logo.png.png"
                             alt="Vision Group Uganda - National Pride, Global Excellence" class="vision-logo"
                             onerror="this.src='https://www.visiongroup.co.ug/images/vision-group-logo.png'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};">
                         <div class="logo-fallback" style="display: none;">
@@ -104,7 +110,8 @@
             <!-- Left Column: Main Content -->
             <div class="left-column">
                 <!-- Check-In/Check-Out Interface -->
-                <section class="checkin-checkout-section form-section form-section-accessible" aria-label="Transaction Input Form">
+                <section class="checkin-checkout-section form-section form-section-accessible"
+                    aria-label="Transaction Input Form">
                     <form class="input-container input-grid-3col" id="transactionForm" novalidate>
                         <div class="input-group">
                             <label for="cardId" class="label-standard">Access Card ID No.</label>
@@ -182,7 +189,7 @@
 
                 <div class="watchlist-panel">
                     <h2 class="panel-title" id="watchlistTitle">WATCHLIST</h2>
-                    
+
                     <!-- Clean State (shown when no incidents) -->
                     <div class="watchlist-clean-state" id="watchlistCleanState" role="status" aria-live="polite">
                         <div class="clean-state-icon" aria-hidden="true">
@@ -190,9 +197,10 @@
                         </div>
                         <p class="clean-state-message">No active incidents detected</p>
                     </div>
-                    
+
                     <!-- Alert State (shown when incidents exist) -->
-                    <div class="watchlist-alert-state" id="watchlistAlertState" style="display: none;" role="alert" aria-live="assertive">
+                    <div class="watchlist-alert-state" id="watchlistAlertState" style="display: none;" role="alert"
+                        aria-live="assertive">
                         <!-- Active Alert Card -->
                         <div class="active-alert-card" role="article" aria-labelledby="alertCardHolder">
                             <div class="alert-header">
@@ -207,29 +215,31 @@
                                 <h3 class="card-holder-name" id="alertCardHolder">-</h3>
                                 <p class="card-details">
                                     <span class="card-id" id="alertCardId" aria-label="Card ID">-</span>
-                                    <span class="alert-timestamp" id="alertTimestamp" aria-label="Time of incident">-</span>
+                                    <span class="alert-timestamp" id="alertTimestamp"
+                                        aria-label="Time of incident">-</span>
                                 </p>
                             </div>
                         </div>
-                        
+
                         <!-- Incident Feed -->
                         <div class="incident-feed">
                             <h3 class="feed-title" id="incidentFeedTitle">RECENT INCIDENTS</h3>
-                            <div class="incident-list" id="incidentList" role="list" aria-labelledby="incidentFeedTitle" tabindex="0">
+                            <div class="incident-list" id="incidentList" role="list" aria-labelledby="incidentFeedTitle"
+                                tabindex="0">
                                 <!-- Incident items will be dynamically inserted here -->
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Global Actions -->
                     <div class="watchlist-actions" role="group" aria-label="Watchlist actions">
-                        <button class="action-btn primary-action" id="watchlistFlagBtn" 
-                                aria-label="Flag asset as missing or stolen" type="button">
+                        <button class="action-btn primary-action" id="watchlistFlagBtn"
+                            aria-label="Flag asset as missing or stolen" type="button">
                             <i data-lucide="flag" aria-hidden="true"></i>
                             <span>FLAG AS MISSING/STOLEN</span>
                         </button>
                         <button class="action-btn secondary-action" id="watchlistExportBtn"
-                                aria-label="Export incident log to CSV file" type="button">
+                            aria-label="Export incident log to CSV file" type="button">
                             <i data-lucide="file-down" aria-hidden="true"></i>
                             <span>EXPORT INCIDENT LOG</span>
                         </button>
@@ -276,6 +286,7 @@
                 </div>
                 <button class="modal-close-btn" id="closeGuestModal" aria-label="Close Guest Management">
                     <i data-lucide="x" class="close-icon"></i>
+                    <span class="close-text">✕</span>
                 </button>
             </div>
 
@@ -289,19 +300,18 @@
                             Scan Visitor Access Card
                         </h3>
                     </div>
-                    
+
                     <div class="card-input-container">
                         <div class="input-group">
                             <label for="modalGuestCardNumber" class="input-label">Visitor Access Card ID</label>
-                            <input type="text" id="modalGuestCardNumber" class="scanner-input" 
-                                   placeholder="Scan visitor access card..." 
-                                   aria-required="true" autocomplete="off">
+                            <input type="text" id="modalGuestCardNumber" class="scanner-input"
+                                placeholder="Scan visitor access card..." aria-required="true" autocomplete="off">
                             <div class="scanner-indicator" id="modalCardScannerIndicator">
                                 <i data-lucide="scan-line" class="scanner-icon"></i>
                                 <span>scan/type to input...</span>
                             </div>
                         </div>
-                        
+
                         <div class="confirmation-message" id="modalCardConfirmation" style="display: none;">
                             <i data-lucide="check-circle" class="confirm-icon"></i>
                             <span>✅ Visitor Card Detected</span>
@@ -318,13 +328,12 @@
                         </h3>
                         <p class="section-subtitle">Scan all electronic devices brought by the visitor</p>
                     </div>
-                    
+
                     <div class="device-input-container">
                         <div class="input-group">
                             <label for="modalDeviceTagInput" class="input-label">Scan device serial No.</label>
-                            <input type="text" id="modalDeviceTagInput" class="scanner-input" 
-                                   placeholder="Scan device tag..." 
-                                   autocomplete="off">
+                            <input type="text" id="modalDeviceTagInput" class="scanner-input"
+                                placeholder="Scan device tag..." autocomplete="off">
                             <div class="scanner-indicator" id="modalDeviceScannerIndicator">
                                 <i data-lucide="scan-line" class="scanner-icon"></i>
                                 <span>Ready to scan device...</span>
@@ -338,7 +347,7 @@
                             <h4>Scanned Devices</h4>
                             <span class="device-count" id="modalDeviceCount">0 devices</span>
                         </div>
-                        
+
                         <div class="device-table-container">
                             <table class="device-table" id="modalDeviceTable">
                                 <thead>
@@ -353,7 +362,7 @@
                                     <!-- Devices will be added here dynamically -->
                                 </tbody>
                             </table>
-                            
+
                             <div class="empty-state" id="modalEmptyDeviceState">
                                 <i data-lucide="smartphone" class="empty-icon"></i>
                                 <p>No devices scanned yet</p>
@@ -371,7 +380,7 @@
                             Action Selection
                         </h3>
                     </div>
-                    
+
                     <div class="action-toggle-container">
                         <div class="action-buttons">
                             <button class="action-btn check-in-btn active" id="modalCheckInBtn" data-action="check-in">
@@ -383,7 +392,7 @@
                                 <span>CHECK OUT</span>
                             </button>
                         </div>
-                        
+
                         <div class="action-status" id="modalActionStatus">
                             <span class="status-text">Mode: Guest Check-In</span>
                         </div>
@@ -397,11 +406,11 @@
                     <i data-lucide="save" class="process-icon"></i>
                     <span> REGISTER VISITOR</span>
                 </button>
-                
+
                 <div class="validation-errors" id="modalValidationErrors" style="display: none;">
                     <!-- Validation errors will be shown here -->
                 </div>
-                
+
                 <div class="success-message" id="modalSuccessMessage" style="display: none;">
                     <i data-lucide="check-circle" class="success-icon"></i>
                     <span id="modalSuccessText">✅ Guest Check-In Successful</span>
@@ -414,7 +423,7 @@
     <script src="js/data.js"></script>
     <script src="js/ui.js"></script>
     <script src="js/app.js"></script>
-    
+
     <!-- Initialize Lucide Icons -->
     <script>
         // Initialize all Lucide icons on page load
