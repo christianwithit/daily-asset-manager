@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vision Group Uganda - Daily Asset Register - Security & Asset Management System">
+    <meta name="theme-color" content="#CF2E2E">
+    <title>Daily Asset Register - Vision Group Uganda</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" sizes="32x32" href="images/favicon.png.jpeg">
+    <link rel="icon" type="image/jpeg" sizes="16x16" href="images/favicon.png.jpeg">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon.png.jpeg">
+    
+    <link rel="stylesheet" href="css/login-styles.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <!-- Logo Section -->
+            <div class="logo-section">
+                <img src="images/vision-group-logo.png.png" 
+                     alt="Vision Group Uganda - National Pride, Global Excellence" 
+                     class="vision-logo"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="logo-fallback" style="display: none;">
+                    <div class="logo-text">
+                        <span class="logo-vision">VISION</span>
+                        <span class="logo-group">GROUP</span>
+                    </div>
+                    <div class="logo-tagline">NATIONAL PRIDE • GLOBAL EXCELLENCE</div>
+                </div>
+            </div>
+
+            <!-- Title Section -->
+            <div class="title-section">
+                <h1 class="main-title">DAILY ASSET REGISTER</h1>
+                <p class="subtitle">Security & Asset Management System</p>
+            </div>
+
+            <!-- Red Divider Line -->
+            <div class="divider-line"></div>
+
+            <!-- Login Form -->
+            <form class="login-form" id="loginForm" novalidate>
+                <!-- Username Field -->
+                <div class="form-group">
+                    <label for="username" class="form-label">USERNAME</label>
+                    <input type="text" 
+                           id="username" 
+                           class="form-input" 
+                           placeholder="Enter your username"
+                           aria-required="true"
+                           autocomplete="username">
+                </div>
+
+                <!-- Password Field -->
+                <div class="form-group">
+                    <label for="password" class="form-label">PASSWORD</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" 
+                               id="password" 
+                               class="form-input" 
+                               placeholder="Enter your password"
+                               aria-required="true"
+                               autocomplete="current-password">
+                        <button type="button" 
+                                class="password-toggle" 
+                                id="togglePassword"
+                                aria-label="Toggle password visibility">
+                            <i data-lucide="eye" class="eye-icon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Entrance Dropdown -->
+                <div class="form-group">
+                    <label for="entrance" class="form-label">ENTRANCE</label>
+                    <div class="select-wrapper">
+                        <select id="entrance" 
+                                class="form-select" 
+                                aria-required="true">
+                            <option value="" disabled selected>Select entrance point</option>
+                            <option value="main-reception">Main Reception Entrance</option>
+                            <option value="logistics-gate">Logistics/Operational Gate</option>
+                            <option value="pike-house">Pike House Gate</option>
+                            <option value="eighth-street">Eighth Street Gate</option>
+                        </select>
+                        <i data-lucide="chevron-down" class="select-icon"></i>
+                    </div>
+                </div>
+
+                <!-- Login Button -->
+                <button type="submit" class="login-btn">
+                    <i data-lucide="log-in" class="login-icon"></i>
+                    Login
+                </button>
+
+                <!-- Error Message -->
+                <div class="error-message" id="errorMessage" style="display: none;" role="alert">
+                    <i data-lucide="alert-circle" class="error-icon"></i>
+                    <span id="errorText">Invalid credentials. Please try again.</span>
+                </div>
+            </form>
+
+            <!-- Footer -->
+            <div class="login-footer">
+                <p class="copyright">© 2026 VISIONGROUP. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/login.js"></script>
+    
+    <!-- Initialize Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vision Group Uganda - Guest Management System - Security Desk Interface">
+    <meta name="theme-color" content="#CF2E2E">
+    <title>Guest Management - Vision Group Uganda</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" sizes="32x32" href="images/favicon.png.jpeg">
+    <link rel="icon" type="image/jpeg" sizes="16x16" href="images/favicon.png.jpeg">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon.png.jpeg">
+    
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/guest-styles.css">
+    <!-- Lucide Icons - Modern, Professional Icon Library -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <!-- Fixed Exit Button - Top Right Corner -->
+    <button class="fixed-exit-btn" id="fixedExitBtn" title="Exit Guest Management" aria-label="Exit Guest Management">
+        <i data-lucide="x" class="fixed-exit-icon"></i>
+        <span class="exit-text">✕</span>
+    </button>
+
+    <!-- Header Section -->
+    <header class="header" role="banner">
+        <div class="header-top">
+            <div class="header-container">
+                <!-- Left: Vision Group Logo and Branding -->
+                <div class="header-left">
+                    <div class="logo-container">
+                        <img src="images/vision-group-logo.png.png"
+                            alt="Vision Group Uganda - National Pride, Global Excellence" class="vision-logo"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="logo-fallback" style="display: none;">
+                            <div class="logo-text">
+                                <span class="logo-vision">VISION</span>
+                                <span class="logo-group">GROUP</span>
+                            </div>
+                            <div class="logo-tagline">NATIONAL PRIDE • GLOBAL EXCELLENCE</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Center: Title and Subtitle -->
+                <div class="header-center">
+                    <h1 class="main-title">GUEST MANAGEMENT SYSTEM</h1>
+                    <p class="subtitle">Security Desk Interface</p>
+                </div>
+
+                <!-- Right: Guard Info, Date, and Exit Button -->
+                <div class="header-right">
+                    <div class="guard-info">
+                        <i data-lucide="shield-check" class="guard-icon"></i>
+                        <span class="guard-label">Guard:</span>
+                        <span class="guard-name" id="guardName">Alex Gitta</span>
+                    </div>
+                    <div class="current-date" id="headerDate">30 Jan 2026</div>
+                    <button class="exit-btn" id="exitGuestSystemBtn" title="Exit Guest Management">
+                        <i data-lucide="x" class="exit-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <div class="nav-bar">
+            <div class="nav-container">
+                <button class="nav-btn" id="backToMainBtn">
+                    <i data-lucide="arrow-left" class="nav-icon"></i>
+                    <span>Back to Main System</span>
+                </button>
+                <div class="nav-status">
+                    <span class="status-indicator active"></span>
+                    <span class="status-text">Guest System Active</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content" role="main">
+        <div class="guest-container guest-modal-accessible">
+            <!-- Section 1: Guest Information & Card -->
+            <section class="guest-section card-section" aria-label="Guest Information">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i data-lucide="user-check" class="section-icon"></i>
+                        Guest Information
+                    </h2>
+                </div>
+                
+                <div class="card-input-container">
+                    <!-- Search Existing Guest -->
+                    <div class="input-group search-group">
+                        <label for="guestSearch" class="input-label">Search Existing Guest</label>
+                        <div class="search-input-wrapper">
+                            <input type="text" id="guestSearch" class="scanner-input search-input" 
+                                   placeholder="Search by name, card, or company..." 
+                                   autocomplete="off">
+                            <i data-lucide="search" class="search-icon-inline"></i>
+                        </div>
+                        <div class="search-results" id="searchResults" style="display: none;">
+                            <!-- Search results will appear here -->
+                        </div>
+                    </div>
+
+                    <!-- Guest Card Number -->
+                    <div class="input-group">
+                        <label for="guestCardNumber" class="input-label">Temporary Card Number *</label>
+                        <input type="text" id="guestCardNumber" class="scanner-input" 
+                               placeholder="Scan or enter card number..." 
+                               aria-required="true" autocomplete="off">
+                        <div class="scanner-indicator" id="cardScannerIndicator">
+                            <i data-lucide="scan-line" class="scanner-icon"></i>
+                            <span>Ready to scan...</span>
+                        </div>
+                    </div>
+
+                    <!-- Card Status Alert -->
+                    <div class="card-status-alert" id="cardStatusAlert" style="display: none;">
+                        <!-- Status messages will appear here -->
+                    </div>
+                    
+                    <!-- Guest Details Form -->
+                    <div class="guest-details-form" id="guestDetailsForm">
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label for="guestName" class="input-label">Guest Full Name *</label>
+                                <input type="text" id="guestName" class="form-input" 
+                                       placeholder="Enter guest name..." 
+                                       aria-required="true" autocomplete="off">
+                            </div>
+                            
+                            <div class="input-group">
+                                <label for="guestCompany" class="input-label">Company/Organization *</label>
+                                <input type="text" id="guestCompany" class="form-input" 
+                                       placeholder="Enter company name..." 
+                                       aria-required="true" autocomplete="off">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label for="guestPurpose" class="input-label">Purpose of Visit *</label>
+                                <select id="guestPurpose" class="form-input form-select" aria-required="true">
+                                    <option value="">Select purpose...</option>
+                                    <option value="meeting">Business Meeting</option>
+                                    <option value="interview">Interview</option>
+                                    <option value="delivery">Delivery/Pickup</option>
+                                    <option value="maintenance">Maintenance/Service</option>
+                                    <option value="training">Training/Workshop</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label for="hostEmployee" class="input-label">Host Employee *</label>
+                                <input type="text" id="hostEmployee" class="form-input" 
+                                       placeholder="Who are they visiting?" 
+                                       aria-required="true" autocomplete="off">
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="guestNotes" class="input-label">Additional Notes (Optional)</label>
+                            <textarea id="guestNotes" class="form-input form-textarea" 
+                                      placeholder="Any special instructions or notes..."
+                                      rows="2"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Scan Guest Devices -->
+            <section class="guest-section devices-section" aria-label="Guest Device Scanning">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i data-lucide="smartphone" class="section-icon"></i>
+                        Guest Devices
+                    </h2>
+                    <p class="section-subtitle">Scan multiple device tags belonging to the guest</p>
+                </div>
+                
+                <div class="device-input-container">
+                    <div class="input-group">
+                        <label for="deviceTagInput" class="input-label">Serial number</label>
+                        <input type="text" id="deviceTagInput" class="scanner-input" 
+                               placeholder="Scan device tag..." 
+                               autocomplete="off">
+                        <div class="scanner-indicator" id="deviceScannerIndicator">
+                            <i data-lucide="scan-line" class="scanner-icon"></i>
+                            <span>Ready to scan device or type serial No...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Device List Table -->
+                <div class="device-list-container">
+                    <div class="device-list-header">
+                        <h3>Scanned Devices</h3>
+                        <span class="device-count" id="deviceCount">0 devices</span>
+                    </div>
+                    
+                    <div class="device-table-container">
+                        <table class="device-table" id="deviceTable">
+                            <thead>
+                                <tr>
+                                    <th>Device Tag</th>
+                                    <th>Serial Number</th>
+                                    <th>Scanned Time</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="deviceTableBody">
+                                <!-- Devices will be added here dynamically -->
+                            </tbody>
+                        </table>
+                        
+                        <div class="empty-state" id="emptyDeviceState">
+                            <i data-lucide="smartphone" class="empty-icon"></i>
+                            <p>No devices scanned yet</p>
+                            <p class="empty-subtitle">Scan device tags to add them to the list</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Check-In / Check-Out Toggle -->
+            <section class="guest-section action-section" aria-label="Guest Action Selection">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i data-lucide="log-in" class="section-icon"></i>
+                        Action Selection
+                    </h2>
+                </div>
+                
+                <div class="action-toggle-container">
+                    <div class="action-buttons">
+                        <button class="action-btn check-in-btn active" id="checkInBtn" data-action="check-in">
+                            <i data-lucide="log-in" class="action-icon"></i>
+                            <span>CHECK IN</span>
+                        </button>
+                        <button class="action-btn check-out-btn" id="checkOutBtn" data-action="check-out">
+                            <i data-lucide="log-out" class="action-icon"></i>
+                            <span>CHECK OUT</span>
+                        </button>
+                    </div>
+                    
+                    <div class="action-status" id="actionStatus">
+                        <span class="status-text">Mode: Guest Check-In</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Submit Section -->
+            <section class="guest-section submit-section">
+                <button class="process-guest-btn" id="processGuestBtn" type="button">
+                    <i data-lucide="save" class="process-icon"></i>
+                    <span>PROCESS GUEST</span>
+                </button>
+                
+                <div class="validation-errors" id="validationErrors" style="display: none;">
+                    <!-- Validation errors will be shown here -->
+                </div>
+                
+                <div class="success-message" id="successMessage" style="display: none;">
+                    <i data-lucide="check-circle" class="success-icon"></i>
+                    <span id="successText">✅ Guest Check-In Successful</span>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer-container">
+            <!-- Left: Timestamp -->
+            <div class="footer-left">
+                <i data-lucide="clock" class="icon-clock" aria-hidden="true"></i>
+                <time class="footer-timestamp" id="footerTimestamp" datetime="">Friday, January 30, 2026 at 10:54:31 EAT</time>
+            </div>
+
+            <!-- Center: Copyright -->
+            <div class="footer-center">
+                <p class="copyright">© 2025 Vision Group Uganda | All Rights Reserved | Guest Management System v1.0</p>
+            </div>
+
+            <!-- Right: Security Status -->
+            <div class="footer-right">
+                <span class="security-indicator" role="img" aria-label="Secure connection"></span>
+                <span class="security-text">System Secure - HTTPS</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="js/data.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/guest-management.js"></script>
+    
+    <!-- Initialize Lucide Icons -->
+    <script>
+        // Initialize all Lucide icons on page load
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
